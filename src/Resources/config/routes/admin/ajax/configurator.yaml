@@ -1,0 +1,44 @@
+asdoria_admin_ajax_configurator_by_name_phrase:
+  path: /search
+  methods: [GET]
+  options:
+    expose: true
+  defaults:
+    _format: json
+    _controller: asdoria.controller.configurator:indexAction
+    _sylius:
+      serialization_groups: [Autocomplete]
+      permission: true
+      repository:
+        method: findByNamePart
+        arguments:
+          phrase: $phrase
+          locale: null
+          limit: $limit
+
+asdoria_admin_ajax_configurator_by_code:
+  path: /code
+  methods: [GET]
+  defaults:
+    _format: json
+    _controller: asdoria.controller.configurator:indexAction
+    _sylius:
+      serialization_groups: [Autocomplete]
+      permission: true
+      repository:
+        method: findBy
+        arguments: [code: $code]
+
+asdoria_admin_ajax_configurator_by_id:
+  path: /id
+  methods: [GET]
+  defaults:
+    _format: json
+    _controller: asdoria.controller.configurator:indexAction
+    _sylius:
+      serialization_groups: [Autocomplete]
+      permission: true
+      repository:
+        method: findBy
+        arguments: [id: $id]
+

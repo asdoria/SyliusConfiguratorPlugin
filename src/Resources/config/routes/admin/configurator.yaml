@@ -1,0 +1,40 @@
+asdoria_admin_configurator:
+    resource: |
+        alias: asdoria.configurator
+        section: admin
+        templates: "@SyliusAdmin\\Crud"
+        redirect: update
+        grid: asdoria_admin_configurator
+        vars:
+            all:
+                subheader: asdoria.ui.configurator
+                templates:
+                    form: "@AsdoriaSyliusConfiguratorPlugin/Admin/Configurator/_form.html.twig"
+            index:
+                icon: 'configurator'
+            update:
+                subheader: asdoria.ui.configurator
+                templates:
+                    form: "@AsdoriaSyliusConfiguratorPlugin/Admin/Configurator/_form.html.twig"
+                    toolbar: "@AsdoriaSyliusConfiguratorPlugin/Admin/Configurator/Update/_toolbar.html.twig"
+    type: sylius.resource
+
+asdoria_admin_configurator_archive:
+    path: /configurators/{id}/archive
+    methods: [PATCH]
+    defaults:
+        _controller: asdoria.controller.configurator::updateAction
+        _sylius:
+            section: admin
+            permission: true
+            template: '@SyliusUi/Grid/Action/archive.html.twig'
+            form:
+                type: Sylius\Bundle\ResourceBundle\Form\Type\ArchivableType
+            redirect:
+                route: asdoria_admin_configurator_index
+                parameters: {}
+
+
+asdoria_configurator_item:
+    prefix: /configurators/{configuratorId}
+    resource: "@AsdoriaSyliusConfiguratorPlugin/Resources/config/routes/admin/configurator_item.yaml"

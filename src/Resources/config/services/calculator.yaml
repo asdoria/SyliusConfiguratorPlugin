@@ -1,0 +1,62 @@
+services:
+  Asdoria\SyliusConfiguratorPlugin\Calculator\Model\DelegatingCalculatorInterface:
+    alias: asdoria_configurator_plugin.configurator_calculator
+
+  asdoria_configurator_plugin.configurator_calculator:
+    class: Asdoria\SyliusConfiguratorPlugin\Calculator\DelegatingCalculator
+    arguments:
+      $registry: '@asdoria_configurator_plugin.registry.configurator_calculator'
+
+  asdoria_configurator_plugin.configurator_calculator.default_configurator:
+    class: Asdoria\SyliusConfiguratorPlugin\Calculator\DefaultConfiguratorCalculator
+    arguments:
+      $registry: '@asdoria_configurator_plugin.registry.configurator_item_calculator'
+    tags:
+      - {
+        name: asdoria_configurator_plugin.configurator_calculator,
+        calculator: "default_configurator",
+        form_type: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\DefaultConfiguratorConfigurationType,
+        label: "asdoria.form.configurator_calculator.default_configurator_configuration.label"
+      }
+
+  asdoria_configurator_plugin.configurator_calculator_item.flat_rate:
+    class: Asdoria\SyliusConfiguratorPlugin\Calculator\FlatRateCalculator
+    tags:
+      - {
+        name: asdoria_configurator_plugin.configurator_item_calculator,
+        calculator: "flat_rate",
+        form_type: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\ChannelBasedFlatRateConfigurationType,
+        label: "asdoria.form.configurator_calculator.flat_rate_configuration.label"
+      }
+
+
+  asdoria_configurator_plugin.configurator_calculator_item.product_attribute_choice_percentage:
+    class: Asdoria\SyliusConfiguratorPlugin\Calculator\ProductAttributeChoicePercentageCalculator
+    tags:
+      - {
+        name: asdoria_configurator_plugin.configurator_item_calculator,
+        calculator: "product_attribute_choice_percentage",
+        form_type: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\ProductAttributeChoiceBasedPercentageConfigurationType,
+        label: "asdoria.form.configurator_calculator.product_attribute_choice_percentage_configuration.label"
+      }
+
+
+  asdoria_configurator_plugin.configurator_calculator_item.product_attribute_choice_flat_rate:
+    class: Asdoria\SyliusConfiguratorPlugin\Calculator\ProductAttributeChoiceFlatRateCalculator
+    tags:
+      - {
+        name: asdoria_configurator_plugin.configurator_item_calculator,
+        calculator: "product_attribute_choice_flat_rate",
+        form_type: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\ProductAttributeChoiceBasedFlatRateConfigurationType,
+        label: "asdoria.form.configurator_calculator.product_attribute_choice_flat_rate_configuration.label"
+      }
+
+  asdoria_configurator_plugin.configurator_calculator_item.percentage:
+    class: Asdoria\SyliusConfiguratorPlugin\Calculator\PercentageCalculator
+    tags:
+      - {
+        name: asdoria_configurator_plugin.configurator_item_calculator,
+        calculator: "percentage",
+        form_type: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\PercentageConfigurationType,
+        label: "asdoria.form.configurator_calculator.percentage_configuration.label"
+      }

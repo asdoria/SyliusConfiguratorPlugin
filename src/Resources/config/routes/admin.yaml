@@ -1,0 +1,10 @@
+asdoria_configurator:
+    resource: "@AsdoriaSyliusConfiguratorPlugin/Resources/config/routes/admin/configurator.yaml"
+
+asdoria_configurator_step:
+    resource: "@AsdoriaSyliusConfiguratorPlugin/Resources/config/routes/admin/configurator_step.yaml"
+
+
+asdoria_admin_configurator_ajax:
+    resource: '@AsdoriaSyliusConfiguratorPlugin/Resources/config/routes/admin/ajax/ajax.yaml'
+    prefix: /asdoria-configurator/ajax

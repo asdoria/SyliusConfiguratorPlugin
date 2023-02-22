@@ -1,0 +1,21 @@
+{% if item is not empty and item.attributes is not empty %}
+<h4>{{ 'asdoria.ui.summary_item_attribute_value'|trans }}</h4>
+<div class="ui list">
+    {% for attrValue in item.attributes %}
+        <div class="item">
+            <i class="right pencil alternate icon"></i>
+            <div class="content">
+                <div >{{ attrValue.attribute.name }} :            {% include [
+                        '@SyliusShop/Product/Show/Types/'~attrValue.attribute.type~'.html.twig',
+                        '@SyliusAttribute/Types/'~attrValue.attribute.type~'.html.twig',
+                        '@SyliusShop/Product/Show/Types/default.html.twig'
+                    ] with {
+                        'attribute': attrValue,
+                        'locale': sylius.localeCode,
+                        'fallbackLocale': sylius.localeCode
+                    } %}</div>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}

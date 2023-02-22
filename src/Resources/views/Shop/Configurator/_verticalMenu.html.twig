@@ -1,0 +1,8 @@
+{{ sylius_template_event('asdoria.shop.configurator.index.before_vertical_menu', {'productConfigurator': productConfigurator}) }}
+<div class="ui four cards">
+    {% for child in productConfigurator.getEnabledSimilarConfigurators(sylius.channel)|sort((a, b) => b.position - a.position)|map(c => c.similarConfigurator) %}
+        {% include '@AsdoriaSyliusConfiguratorPlugin/Shop/Configurator/_box.html.twig' with {'productConfigurator': child} %}
+    {% endfor %}
+</div>
+
+{{ sylius_template_event('asdoria.shop.configurator.index.after_vertical_menu', {'productConfigurator': productConfigurator}) }}

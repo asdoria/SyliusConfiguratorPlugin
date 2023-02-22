@@ -1,0 +1,37 @@
+{% set enabledChannels = configurator.channels|filter(channel => channel.enabled == true) %}
+
+{% if sylius_bundle_loaded_checker('SyliusShopBundle') %}
+    {% if not configurator.enabled or enabledChannels|length < 1 %}
+        <a class="ui labeled icon button disabled" href="#">
+            <i class="angle right icon"></i>
+            {{ 'asdoria.ui.show_configurator_in_shop_page'|trans }}
+        </a>
+    {% elseif enabledChannels|length > 1 %}
+        <div class="ui floating dropdown labeled icon button">
+            <i class="share alternate icon"></i>
+            <span class="text">
+                {{ 'asdoria.ui.show_configurator_in_shop_page'|trans }}
+            </span>
+            <div class="menu">
+                <div class="scrolling menu">
+                    {% for channel in enabledChannels %}
+                        {% set url = channel.hostname is not null ? 'http://' ~ channel.hostname ~ path('asdoria_configurator_shop_configurator', {'slug': configurator.slug, '_locale': channel.defaultLocale.code}) : url('asdoria_product_shop_configurator_show', {'slug': configurator.slug, '_locale': channel.defaultLocale.code}) %}
+                        <a href="{{ url|raw }}" class="item" target="_blank">
+                            <i class="angle right icon"></i>
+                            {{ 'sylius.ui.show_in'|trans }}
+                            {{ channel.name }} ({{ channel.code }})
+                        </a>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        {% for channel in enabledChannels %}
+            {% set url = channel.hostname is not null ? 'http://' ~ channel.hostname ~ path('asdoria_configurator_shop_configurator', {'slug': configurator.slug, '_locale': channel.defaultLocale.code}) : url('asdoria_product_shop_configurator_show', {'slug': configurator.slug, '_locale': channel.defaultLocale.code}) %}
+            <a class="ui labeled icon button" href="{{ url|raw }}" target="_blank">
+                <i class="angle right icon"></i>
+                {{ 'asdoria.ui.show_configurator_in_shop_page'|trans }}
+            </a>
+        {% endfor %}
+    {% endif %}
+{% endif %}

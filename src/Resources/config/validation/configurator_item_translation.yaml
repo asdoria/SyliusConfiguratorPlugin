@@ -1,0 +1,5 @@
+Asdoria\SyliusConfiguratorPlugin\Entity\ConfiguratorItemTranslation:
+    properties:
+        name:
+            - NotBlank:
+                  groups: [sylius, asdoria_configurator_plugin]

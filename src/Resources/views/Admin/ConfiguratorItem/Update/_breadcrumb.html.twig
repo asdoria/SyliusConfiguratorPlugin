@@ -1,0 +1,12 @@
+{% import '@SyliusAdmin/Macro/breadcrumb.html.twig' as breadcrumb %}
+{% set vars = configuration.parameters.get('vars') %}
+{% set breadcrumbs = [
+    { label: 'sylius.ui.administration'|trans, url: path('sylius_admin_dashboard') },
+    { label: 'asdoria.ui.configurators'|trans , url: path('asdoria_admin_configurator_index')},
+    { label: 'asdoria.ui.manage_your_configurator_items'|trans , url: path('asdoria_admin_configurator_item_index', {'configuratorId': vars.configurator.id })},
+    { label: resource.name },
+    { label: 'sylius.ui.edit'|trans }
+]
+%}
+
+{{ breadcrumb.crumble(breadcrumbs) }}

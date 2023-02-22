@@ -1,0 +1,45 @@
+<div class="ui segment">
+    {% set activeStepCodes = activeSteps|reduce((carry, item) => carry|merge([item.code]), []) %}
+
+    {{ form_start(form, {
+        'action': path('asdoria_configurator_shop_configurator', {'slug' : app.request.attributes.get('slug')}),
+        'attr': {'id': 'asdoria-product-configurator-to-cart', 'class': 'ui loadable form', 'novalidate': 'novalidate', 'data-redirect': path('sylius_shop_cart_summary')}}) }}
+    {{ form_errors(form) }}
+    {{ form_row(form.step, {'value' : currentStep.id}) }}
+
+    {% include '@AsdoriaSyliusConfiguratorPlugin/Shop/Configurator/Show/_steps.html.twig' %}
+
+    {% for step in configurator.getConfiguratorSteps() %}
+        <div class="ui bottom attached {% if activeSteps|last == step %}active{% endif %} tab segment" data-tab="configurator-tab-{{ loop.index }}">
+            <h3 class="ui top attached label">{{ step.description }}</h3>
+            {% if loop.first %}
+                {{ form_row(form.cartItem.quantity) }}
+                {{ form_row(form.cartItem.variant) }}
+            {% else %}
+                <div  class="ui segment center aligned">
+                    {% for row in form.cartItem.attributes.children|filter(item => item.vars.data.configuratorStep == step)%}
+                        {{ form_widget(row) }}
+                        {{ form_errors(row) }}
+                    {% endfor %}
+                    {% for additionalFormItem in form.additionalItems.children|filter(item => item.children.cartItem.vars.attr.step == step.code)%}
+                        {{ form_row(additionalFormItem.cartItem.quantity) }}
+                        {{ form_label(additionalFormItem.cartItem.variant) }}
+                        {{ form_widget(additionalFormItem.cartItem.variant, {'attr': {'class': 'ui center aligned'}}) }}
+                        {{ form_errors(additionalFormItem.cartItem.variant) }}
+                    {% endfor %}
+                </div>
+            {% endif %}
+            <div class="">
+                <a href="{{ path('asdoria_configurator_shop_configurator', {'_locale': sylius.localeCode, 'slug': configurator.slug }) }}" class="ui huge icon labeled button">
+                    <i class="undo icon"></i>
+                    {{ 'asdoria.ui.reset'|trans }}
+                </a>
+                <button type="submit" class="ui right floated huge primary icon labeled button" {{ sylius_test_html_attribute('add-to-cart-button') }}><i class="icon arrow alternate circle right outline"></i>
+                    {{ activeSteps|last == configurator.getConfiguratorSteps()|last ? 'sylius.ui.add_to_cart'|trans : 'sylius.ui.next'|trans }}
+                </button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+{{ form_widget(form._token) }}
+{{ form_end(form, {'render_rest': false}) }}

@@ -1,0 +1,3 @@
+{% set configurator = form.vars.data %}
+{% set menu = knp_menu_get('asdoria.admin.configurator_form', [], {'configurator': configurator}) %}
+{{ knp_menu_render(menu, {'template': '@AsdoriaSyliusConfiguratorPlugin/Admin/Configurator/_menu.html.twig', 'form': form, 'configurator': configurator}) }}

@@ -1,0 +1,14 @@
+Asdoria\SyliusConfiguratorPlugin\Entity\ConfiguratorTranslation:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+              fields: [ slug, locale ]
+              groups: [ sylius, asdoria_configurator_plugin ]
+    properties:
+        slug:
+            - NotBlank:
+                groups: [sylius, asdoria_configurator_plugin]
+        name:
+            - NotBlank:
+                  groups: [sylius, asdoria_configurator_plugin]
+
+

@@ -1,0 +1,9 @@
+services:
+  asdoria_configurator_plugin.order_processing.order_prices_recalculator:
+    class: Asdoria\SyliusConfiguratorPlugin\OrderProcessor\OrderPricesRecalculator
+    decorates: sylius.order_processing.order_prices_recalculator
+    decoration_priority: -20
+    arguments:
+      $inner: '@asdoria_configurator_plugin.order_processing.order_prices_recalculator.inner'
+    calls:
+        - ['setConfiguratorCalculator', ['@Asdoria\SyliusConfiguratorPlugin\Calculator\Model\DelegatingCalculatorInterface']]

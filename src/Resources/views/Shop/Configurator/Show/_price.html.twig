@@ -1,0 +1,8 @@
+{% set configuratorAddToCartCommand = form.vars.data %}
+{% import "@SyliusShop/Common/Macro/money.html.twig" as money %}
+{% if configuratorAddToCartCommand.cartItem.variant is not empty %}
+    <span class="ui huge header">{{ money.format(unitPrice|default(configuratorAddToCartCommand.cartItem.variant.getChannelPricingForChannel(sylius.channel).getPrice()), configuratorAddToCartCommand.cart.currencyCode) }}</span>
+    <div class="ui basic segment">
+        <p>{{ configuratorAddToCartCommand.cartItem.variant.product.shortDescription }}</p>
+    </div>
+{% endif %}

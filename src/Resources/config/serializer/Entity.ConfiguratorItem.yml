@@ -1,0 +1,30 @@
+Asdoria\SyliusConfiguratorPlugin\Entity\ConfiguratorItem:
+    exclusion_policy: ALL
+    xml_root_name: configurator_item
+    properties:
+        id:
+            expose: true
+            type: integer
+            xml_attribute: true
+            groups: [Autocomplete, AddToCartItem,  Default, Detailed]
+        code:
+            expose: true
+            type: string
+            groups: [Autocomplete, AddToCartItem, Default, Detailed]
+        position:
+            expose: true
+            type: integer
+            groups: [ Default, Detailed, AddToCartItem]
+    virtual_properties:
+        getName:
+            serialized_name: name
+            groups: [Autocomplete,AddToCartItem, Default, Detailed]
+        getDescription:
+            serialized_name: description
+            groups: [Autocomplete,AddToCartItem, Default, Detailed]
+        getImages:
+            serialized_name: images
+            groups: [ AddToCartItem ]
+        getConfiguration:
+            serialized_name: configuration
+            groups: [AddToCartItem]

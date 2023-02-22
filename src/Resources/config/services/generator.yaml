@@ -1,0 +1,3 @@
+services:
+    asdoria.generator.configurator_slug:
+        class: Asdoria\SyliusConfiguratorPlugin\Generator\ConfiguratorSlugGenerator

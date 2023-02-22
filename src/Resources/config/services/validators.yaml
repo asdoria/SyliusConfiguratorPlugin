@@ -1,0 +1,4 @@
+services:
+  Asdoria\SyliusConfiguratorPlugin\Validator\Constraints\ConfiguratorAddToCartCommand:
+    tags:
+      - { name: 'validator.constraint_validator', alias: 'asdoria_configurator_add_to_cart_command' }

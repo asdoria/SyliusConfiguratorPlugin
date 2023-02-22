@@ -1,0 +1,9 @@
+asdoria_configurator_shop_configurator:
+    path: /{slug}
+    methods: [GET, POST]
+    defaults:
+        _controller: Asdoria\SyliusConfiguratorPlugin\Controller\Shop\AddToCartController
+
+asdoria_product_shop_configurator_ajax:
+    prefix: /ajax
+    resource: 'shop/_ajax.yaml'

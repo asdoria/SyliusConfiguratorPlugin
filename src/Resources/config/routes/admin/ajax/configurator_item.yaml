@@ -1,0 +1,8 @@
+asdoria_admin_ajax_configurator_item_update_position:
+    path: /update-position
+    methods: [PUT]
+    defaults:
+        _controller: asdoria.controller.configurator_item::updatePositionsAction
+        _format: json
+        _sylius:
+            permission: true

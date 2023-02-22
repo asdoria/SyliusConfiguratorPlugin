@@ -1,0 +1,3 @@
+{% if data.name is not empty %}
+    <a href="{{ path('asdoria_admin_configurator_step_update', {'id': data.id}) }}">{{ data.name }}</a>
+{% endif %}

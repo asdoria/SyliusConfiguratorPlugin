@@ -1,0 +1,8 @@
+App\Entity\Order\OrderItem:
+  properties:
+    variant:
+      - NotBlank:
+          groups: [sylius, asdoria_configurator_plugin]
+    attributes:
+      - Valid:
+          groups: [sylius, asdoria_configurator_plugin]

@@ -1,0 +1,5 @@
+Asdoria\SyliusConfiguratorPlugin\Controller\Shop\ConfiguratorAddToCartCommand:
+    properties:
+        cartItem:
+            - Valid:
+                groups: [sylius, asdoria_configurator_plugin]

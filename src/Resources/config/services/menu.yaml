@@ -1,0 +1,21 @@
+services:
+    Asdoria\SyliusConfiguratorPlugin\Menu\AdminMenuListener:
+        public: true
+        tags:
+            - { name: kernel.event_listener, event: !php/const Sylius\Bundle\AdminBundle\Menu\MainMenuBuilder::EVENT_NAME, method: addAdminMenuItems }
+
+    Asdoria\SyliusConfiguratorPlugin\Menu\ConfiguratorFormMenuBuilder:
+        public: true
+        arguments:
+            $factory: '@knp_menu.factory'
+            $eventDispatcher: '@event_dispatcher'
+        tags:
+            - { name: knp_menu.menu_builder, method: createMenu , alias: 'asdoria.admin.configurator_form' }
+
+    Asdoria\SyliusConfiguratorPlugin\Menu\ConfiguratorItemFormMenuBuilder:
+        public: true
+        arguments:
+            $factory: '@knp_menu.factory'
+            $eventDispatcher: '@event_dispatcher'
+        tags:
+            - { name: knp_menu.menu_builder, method: createMenu , alias: 'asdoria.admin.configurator_item_form' }

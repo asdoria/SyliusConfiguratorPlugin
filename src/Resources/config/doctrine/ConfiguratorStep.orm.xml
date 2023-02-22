@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<doctrine-mapping xmlns="http://doctrine-project.org/schemas/orm/doctrine-mapping"
+                  xmlns:gedmo="http://gediminasm.org/schemas/orm/doctrine-extensions-mapping">
+
+    <mapped-superclass name="Asdoria\SyliusConfiguratorPlugin\Entity\ConfiguratorStep" table="asdoria_configurator_step"   >
+        <id name="id" column="id" type="integer">
+            <generator strategy="AUTO" />
+        </id>
+        <field name="code" column="code" type="string" />
+        <one-to-one field="image" target-entity="Asdoria\SyliusConfiguratorPlugin\Model\ConfiguratorStepImageInterface" mapped-by="owner" >
+            <cascade>
+                <cascade-all/>
+            </cascade>
+        </one-to-one>
+        <unique-constraints>
+            <unique-constraint columns="code" />
+        </unique-constraints>
+    </mapped-superclass>
+
+</doctrine-mapping>

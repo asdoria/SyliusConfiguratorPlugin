@@ -1,0 +1,79 @@
+sylius_grid:
+    grids:
+        asdoria_admin_configurator_item:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%asdoria.model.configurator_item.class%"
+                    repository:
+                        method: createQueryBuilderByConfiguratorId
+                        arguments: [$configuratorId]
+            sorting:
+                position: asc
+            fields:
+                code:
+                    type: string
+                    label: sylius.ui.code
+                name:
+                    type: string
+                    label: sylius.ui.name
+                    sortable: translations.name
+                configuratorStep:
+                    type: twig
+                    label: asdoria.ui.configurator_step
+                    sortable: configuratorStep
+                    options:
+                        template: "@AsdoriaSyliusConfiguratorPlugin/Admin/Grid/Field/configuratorStep.html.twig"
+                position:
+                    type: twig
+                    label: sylius.ui.position
+                    sortable: position
+                    path: .
+                    options:
+                        template: "@AsdoriaSyliusConfiguratorPlugin/Admin/Grid/Field/configurator_item_position.html.twig"
+            actions:
+                main:
+                    create:
+                        type: links
+                        label: asdoria.ui.manage_configurator_item_create
+                        icon: cubes
+                        options:
+                            links:
+                                attribute:
+                                    route: asdoria_admin_configurator_item_create_product_attribute
+                                    icon: plus
+                                    label: asdoria.ui.new_configurator_item_create_product_attribute
+                                    parameters:
+                                        configuratorId: $configuratorId
+                                option:
+                                    route: asdoria_admin_configurator_item_create_additional_product
+                                    icon: plus
+                                    label: asdoria.ui.new_configurator_item_create_additional_product
+                                    parameters:
+                                        configuratorId: $configuratorId
+                    update_positions:
+                        type: update_configurator_item_positions
+                item:
+                    update:
+                        type: update
+                        options:
+                            link:
+                                route: asdoria_admin_configurator_item_update
+                                parameters:
+                                    id: resource.id
+                                    configuratorId: $configuratorId
+                    delete:
+                        type: delete
+                        options:
+                            link:
+                                route: asdoria_admin_configurator_item_delete
+                                parameters:
+                                    id: resource.id
+                                    configuratorId: $configuratorId
+            filters:
+                search:
+                    type: string
+                    label: sylius.ui.search
+                    options:
+                        fields: [translations.name]
+

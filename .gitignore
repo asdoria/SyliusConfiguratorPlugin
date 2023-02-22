@@ -1,0 +1,17 @@
+/vendor/
+/node_modules/
+node_modules
+/.github/*
+/etc/build/*
+!/etc/build/.gitignore
+
+/tests/Application/yarn.lock
+
+/.phpunit.result.cache
+/behat.yml
+/phpspec.yml
+/phpunit.xml
+
+.idea/
+.phpunit.cache
+

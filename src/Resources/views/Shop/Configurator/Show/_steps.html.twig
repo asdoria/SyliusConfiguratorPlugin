@@ -1,0 +1,17 @@
+<div class="ui top attached tabular menu">
+    {% for step in configurator.getConfiguratorSteps() %}
+        <div class="item {% if activeSteps|last == step %}active{% endif %} {% if step not in activeSteps %}disabled{% endif %}"
+             {% if step in activeSteps %}data-tab="configurator-tab-{{ loop.index }}"{% endif %}>
+            {% if step in activeSteps and step != activeSteps|last %}
+                <i class="green check icon"></i>
+            {% else %}
+                {% if step.image is not empty %}
+                    <img src="{{ step.image.path|imagine_filter('sylius_shop_product_tiny_thumbnail') }}" class="ui avatar image" alt="{{ step.name }}">
+                {% else %}
+                    {{ loop.index }}.
+                {% endif %}
+            {% endif %}
+            {{ step.name }}
+        </div>
+    {% endfor %}
+</div>

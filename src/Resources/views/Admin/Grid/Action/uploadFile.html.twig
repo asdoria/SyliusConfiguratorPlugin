@@ -1,0 +1,13 @@
+{% import '@SyliusUi/Macro/buttons.html.twig' as buttons %}
+
+{% set message = action.label | default('asdoria.ui.download') %}
+{% set icon    = action.options.icon|default('plus') %}
+{% set class   = action.options.class| default('primary') %}
+<a class="ui {% if message is not empty %}labeled {% endif %}{% if icon is not empty %}icon {% endif %}button {% if class is not empty %} {{ class }} {% endif %}" href="{{ path('asdoria_admin_export_download', {'id': data.id}) }}">
+    {% if icon is not empty %}
+        <i class="icon {{ icon }}"></i>
+    {% endif %}
+    {% if message is not empty %}
+        {{ message|trans }}
+    {% endif %}
+</a>

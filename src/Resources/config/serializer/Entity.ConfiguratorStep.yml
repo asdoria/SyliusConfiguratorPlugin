@@ -1,0 +1,27 @@
+Asdoria\SyliusConfiguratorPlugin\Entity\ConfiguratorStep:
+    exclusion_policy: ALL
+    xml_root_name: configurator_step
+    properties:
+        id:
+            expose: true
+            type: integer
+            xml_attribute: true
+            groups: [Autocomplete,  Default, Detailed, AddToCartItem]
+        code:
+            expose: true
+            type: string
+            groups: [Autocomplete,  Default, Detailed, AddToCartItem]
+        position:
+            expose: true
+            type: integer
+            groups: [ Default, Detailed, AddToCartItem]
+    virtual_properties:
+        getName:
+            serialized_name: name
+            groups: [Autocomplete, Default, Detailed, AddToCartItem]
+        getDescription:
+            serialized_name: description
+            groups: [Autocomplete, Default, Detailed, AddToCartItem]
+        getImage:
+            serialized_name: image
+            groups: [ AddToCartItem ]

@@ -1,0 +1,39 @@
+sylius_grid:
+    grids:
+        asdoria_admin_configurator_step:
+            driver:
+                name: doctrine/orm
+                options:
+                    class: "%asdoria.model.configurator_step.class%"
+                    repository:
+                        method: createListQueryBuilder
+            fields:
+                image:
+                    type: twig
+                    label: sylius.ui.image
+                    path: .
+                    options:
+                        template: "@AsdoriaSyliusConfiguratorPlugin/Admin/Grid/Field/configuratorStepImage.html.twig"
+                code:
+                    type: string
+                    label: sylius.ui.code
+                name:
+                    type: string
+                    label: sylius.ui.name
+                    sortable: translations.name
+            actions:
+                main:
+                    create:
+                        type: create
+                item:
+                    update:
+                        type: update
+                    delete:
+                        type: delete
+            filters:
+                search:
+                    type: string
+                    label: sylius.ui.search
+                    options:
+                        fields: [translations.name]
+

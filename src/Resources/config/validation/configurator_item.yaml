@@ -1,0 +1,13 @@
+Asdoria\SyliusConfiguratorPlugin\Entity\ConfiguratorItem:
+    constraints:
+        - Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity:
+              fields: [code]
+              groups: [sylius, asdoria_configurator_plugin]
+
+    properties:
+        code:
+            - NotBlank:
+                  groups: [ sylius, asdoria_configurator_plugin ]
+        translations:
+            - Valid:
+                  groups: [sylius, asdoria_configurator_plugin]

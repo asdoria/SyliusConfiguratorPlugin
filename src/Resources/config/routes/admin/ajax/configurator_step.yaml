@@ -1,0 +1,46 @@
+asdoria_admin_ajax_configurator_step_by_phrase:
+    path: /search
+    methods: [GET]
+    defaults:
+        _controller: asdoria.controller.configurator_step::indexAction
+        _format: json
+        _sylius:
+            serialization_groups: [Autocomplete]
+            permission: true
+            repository:
+                method: findByPhrase
+                arguments:
+                    phrase: $phrase
+                    locale: expr:service('sylius.context.locale').getLocaleCode()
+
+asdoria_admin_ajax_configurator_step_by_id:
+    path: /
+    methods: [GET]
+    defaults:
+        _controller: asdoria.controller.configurator_step::indexAction
+        _format: json
+        _sylius:
+            serialization_groups: [Autocomplete]
+            permission: true
+            repository:
+                method: findBy
+                arguments: [id: $id]
+
+asdoria_admin_ajax_configurator_step_search:
+    path: /find
+    methods: [GET]
+    defaults:
+        _controller: asdoria.controller.configurator_step::indexAction
+        _format: json
+        _sylius:
+            permission: true
+            grid: asdoria_admin_ajax_configurator_step
+
+asdoria_admin_ajax_configurator_step_update_position:
+    path: /update-position
+    methods: [PUT]
+    defaults:
+        _controller: asdoria.controller.configurator_step::updatePositionsAction
+        _format: json
+        _sylius:
+            permission: true

@@ -1,0 +1,94 @@
+sylius_grid:
+  grids:
+    asdoria_admin_configurator:
+      driver:
+        name: doctrine/orm
+        options:
+          class: "%asdoria.model.configurator.class%"
+      sorting:
+        updatedAt: desc
+      fields:
+        image:
+          type: twig
+          label: sylius.ui.image
+          path: .
+          options:
+            template: "@AsdoriaSyliusConfiguratorPlugin/Admin/Grid/Field/image.html.twig"
+        slug:
+          type: string
+          label: asdoria.ui.slug
+        name:
+          type: string
+          label: sylius.ui.name
+        enabled:
+          type: twig
+          label: sylius.ui.enabled
+          sortable: ~
+          options:
+            template: "@SyliusUi/Grid/Field/enabled.html.twig"
+        createdAt:
+          type: datetime
+          label: sylius.ui.created_at
+        updatedAt:
+          type: datetime
+          label: asdoria.ui.updated_at
+      actions:
+        main:
+          create:
+            type: create
+          manage_step:
+            type: default
+            label: asdoria.ui.manage_configurator_step
+            icon: random
+            options:
+              link:
+                route: asdoria_admin_configurator_step_index
+        item:
+          update:
+            type: update
+          manage:
+            type: links
+            label: asdoria.ui.manage_your_configurator_items
+            icon: cubes
+            options:
+              links:
+                list:
+                  route: asdoria_admin_configurator_item_index
+                  icon: plus
+                  label: asdoria.ui.configurator_items
+                  parameters:
+                    configuratorId: resource.id
+                attribute:
+                  route: asdoria_admin_configurator_item_create_product_attribute
+                  icon: plus
+                  label: asdoria.ui.new_configurator_item_create_product_attribute
+                  parameters:
+                    configuratorId: resource.id
+                option:
+                  route: asdoria_admin_configurator_item_create_additional_product
+                  icon: plus
+                  label: asdoria.ui.new_configurator_item_create_additional_product
+                  parameters:
+                    configuratorId: resource.id
+          archive:
+            type: archive
+      filters:
+        search:
+          type: string
+          label: sylius.ui.search
+          options:
+            fields: [translations.name, translations.slug]
+        channels:
+          type: entity
+          label: sylius.ui.channels
+          form_options:
+            class: "%sylius.model.channel.class%"
+        enabled:
+          type: boolean
+          label: sylius.ui.enabled
+        archival:
+          type: exists
+          label: sylius.ui.archival
+          options:
+            field: archivedAt
+          default_value: false

@@ -1,0 +1,86 @@
+asdoria:
+    menu:
+        admin:
+            main:
+                product:
+                    header: Product
+    ui:
+        summary_item_attribute_value: Customization
+        duplicate: Duplicate
+        next: Next
+        before: Previous
+        reset: Reset
+        configurators: Product Configurators
+        configurator: Product Configurator
+        new_configurator: New Configurator
+        edit_configurator: Edit a Configurator
+        count: Count
+        calculator: Calculator
+        slug: Slug
+        updated_at: Update
+        show_configurator_in_shop_page: Show the Configurator in the shop
+        configurators_step_1: Step 1
+        configurator_step: Step
+        manage_configurator_step: Step Management
+        configurator_steps: Configuration steps
+        manage_your_configurator_steps: Management of Configuration Steps
+        edit_configurator_step: Edit a step
+        edit_configurator_item: Edit a configuration
+        new_configurator_step: New step
+        manage_your_configurator_items: Management of configurations
+        configurator_items: List of configurations
+        new_configurator_item_create_product_attribute: New configuration of type attribute
+        new_configurator_item_create_additional_product: New configuration of type additional product
+        new_configurator_item_product_attribute: New configuration of type product attribute
+        new_configurator_item_additional_product: New configuration of type additional product
+        manage_your_configurator_item: Management of configurations
+        manage_configurator_item_create: New configuration
+        manage_your_configurator_item_additional_product: Management of configurations
+        manage_your_configurator_item_product_attribute: Management of configurations
+    form:
+        configurator:
+            name: Name
+            description: Description
+            slug: Slug
+            enabled: Enable the Configurator
+            images: Images
+            meta_title: Meta Title
+            meta_description: Meta Description
+            meta_keywords: Meta Keywords
+            meta_robots: Meta Robots
+            meta_canonical: Meta Canonical
+            products: Product selection
+            configurator_step: Choice of step
+            calculator: Price calculator
+        configurator_step:
+            label: Name of the step
+            description: Description
+            position: Position
+        configurator_item:
+            label: Name
+            description: Description
+            images: Images
+            position: Position
+            configurator_step: Choice of step
+        configurator_item_product_attribute:
+            product_attribute: Attribute
+            is_required: The attribute must be required
+            select:
+                multiple: Multiple selection (only for attributes of type select Multiple)
+        configurator_item_additional_product:
+            product: Additional Product
+        configurator_calculator:
+            flat_rate_configuration:
+                label: Single price
+                amount: Amount
+            default_configurator_configuration:
+                label: Default calculator
+            per_unit_rate_configuration:
+                label: Fixed amount per unit
+                amount: Amount
+            percentage_configuration:
+                label: Single Percentage
+            product_attribute_choice_flat_rate_configuration:
+                label: Single rate By choice
+            product_attribute_choice_percentage_configuration:
+                label: Percentage Single By choice

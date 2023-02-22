@@ -1,0 +1,235 @@
+parameters:
+    asdoria.form.type.configurator.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.configurator_translation.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.configurator_step.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.configurator_step_translation.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.configurator_step_image.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.configurator_item.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.configurator_item_product_attribute.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.configurator_item_additional_product.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.configurator_item_translation.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.configurator_image.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.configurator_item_image.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.order_item_attribute_value.validation_groups: [sylius, asdoria_configurator_plugin]
+    asdoria.form.type.configurator_order_item.validation_groups: [sylius, asdoria_configurator_plugin]
+    sylius.form.type.configurator_configurator_add_to_cart.validation_groups: [sylius, asdoria_configurator_plugin]
+    sylius.form.type.configurator_add_to_cart.validation_groups: [sylius, asdoria_configurator_plugin]
+services:
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorType:
+        arguments:
+            $dataClass: '%asdoria.model.configurator.class%'
+            $validationGroups: '%asdoria.form.type.configurator.validation_groups%'
+        calls:
+            - [ 'setCalculatorRegistry',  ['@asdoria_configurator_plugin.registry.configurator_calculator']]
+            - [ 'setFormTypeRegistry',  ['@asdoria_configurator_plugin.form_registry.configurator_calculator']]
+        tags:
+            - { name: form.type }
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorTranslationType:
+        arguments:
+            $dataClass: '%asdoria.model.configurator_translation.class%'
+            $validationGroups: '%asdoria.form.type.configurator_translation.validation_groups%'
+        tags:
+            - { name: form.type }
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorStepType:
+        arguments:
+            $dataClass: '%asdoria.model.configurator_step.class%'
+            $validationGroups: '%asdoria.form.type.configurator_step.validation_groups%'
+        tags:
+            - { name: form.type }
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorStepTranslationType:
+        arguments:
+            $dataClass: '%asdoria.model.configurator_step_translation.class%'
+            $validationGroups: '%asdoria.form.type.configurator_step_translation.validation_groups%'
+        tags:
+            - { name: form.type }
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorItemType:
+        arguments:
+            $dataClass: '%asdoria.model.configurator_item.class%'
+            $validationGroups: '%asdoria.form.type.configurator_item.validation_groups%'
+        calls:
+            - [ 'setCalculatorRegistry',  ['@asdoria_configurator_plugin.registry.configurator_item_calculator']]
+            - [ 'setFormTypeRegistry',  ['@asdoria_configurator_plugin.form_registry.configurator_item_calculator']]
+        tags:
+            - { name: form.type }
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorItemTranslationType:
+        arguments:
+            $dataClass: '%asdoria.model.configurator_item_translation.class%'
+            $validationGroups: '%asdoria.form.type.configurator_item_translation.validation_groups%'
+        tags:
+            - { name: form.type }
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorItemProductAttributeType:
+        arguments:
+            $dataClass: '%asdoria.model.configurator_item_product_attribute.class%'
+            $validationGroups: '%asdoria.form.type.configurator_item_product_attribute.validation_groups%'
+        calls:
+            - [ 'setCalculatorRegistry',  ['@asdoria_configurator_plugin.registry.configurator_item_calculator']]
+            - [ 'setFormTypeRegistry',  ['@asdoria_configurator_plugin.form_registry.configurator_item_calculator']]
+        tags:
+            - { name: form.type }
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorItemAdditionalProductType:
+        arguments:
+            $dataClass: '%asdoria.model.configurator_item_additional_product.class%'
+            $validationGroups: '%asdoria.form.type.configurator_item_additional_product.validation_groups%'
+        tags:
+            - { name: form.type }
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorImageType:
+        arguments:
+            - '%asdoria.model.configurator_image.class%'
+            - '%asdoria.form.type.configurator_image.validation_groups%'
+        tags:
+            - { name: form.type }
+
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorStepImageType:
+        arguments:
+            - '%asdoria.model.configurator_step_image.class%'
+            - '%asdoria.form.type.configurator_step_image.validation_groups%'
+        tags:
+            - { name: form.type }
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorItemImageType:
+        arguments:
+            - '%asdoria.model.configurator_item_image.class%'
+            - '%asdoria.form.type.configurator_item_image.validation_groups%'
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.cart_item:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\CartItem\CartItemType
+        parent: sylius.form.type.cart_item
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.additional_cart_item:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\CartItem\AdditionalCartItemType
+        parent: sylius.form.type.cart_item
+        tags:
+            - { name: form.type }
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\OrderItemAttributeValueType:
+        arguments:
+            $dataClass: '%asdoria.model.order_item_attribute_value.class%'
+            $validationGroups: '%asdoria.form.type.order_item_attribute_value.validation_groups%'
+            $attributeChoiceType: 'Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorAttributeChoiceType'
+            $attributeRepository: '@sylius.repository.product_attribute'
+            $localeRepository: '@sylius.repository.locale'
+            $formTypeRegistry: '@sylius.form_registry.attribute_type'
+        calls:
+            - ['setChannelContext', ['@sylius.context.channel']]
+            - ['setCurrencyContext', ['@sylius.context.currency']]
+            - ['setMoneyFormatter', ['@sylius.money_formatter']]
+            - ['setRouter', ['@router']]
+        tags:
+            - { name: form.type }
+
+    Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorAttributeChoiceType:
+        arguments:
+            - '@asdoria.repository.configurator'
+            - '@request_stack'
+            - '@sylius.context.channel'
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.configurator_add_to_cart:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\CartItem\ConfiguratorAddToCartType
+        arguments:
+            $requestStack: '@request_stack'
+            $configuratorContext: '@Asdoria\SyliusConfiguratorPlugin\Context\ConfiguratorContext'
+            $stepRepository: '@asdoria.repository.configurator_step'
+            $dataClass: 'Asdoria\SyliusConfiguratorPlugin\Controller\Shop\ConfiguratorAddToCartCommand'
+            $validationGroups: '%sylius.form.type.configurator_configurator_add_to_cart.validation_groups%'
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.configurator_add_to_cart_item:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\CartItem\ConfiguratorAddToCartItemType
+        arguments:
+            $dataClass: 'Asdoria\SyliusConfiguratorPlugin\Controller\Shop\AddToCartCommand'
+            $variantRepository: '@sylius.repository.product_variant'
+            $validationGroups: '%sylius.form.type.configurator_add_to_cart.validation_groups%'
+        calls:
+            - ['setChannelContext', ['@sylius.context.channel']]
+            - ['setCurrencyContext', ['@sylius.context.currency']]
+            - ['setMoneyFormatter', ['@sylius.money_formatter']]
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.attribute_hidden_item:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\AttributeHiddenType
+        arguments:
+            $attributeRepository: '@sylius.repository.product_attribute'
+        tags:
+            - { name: form.type }
+
+
+    asdoria_configurator_plugin.form.type.configuration_checkbox:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfigurationCheckboxType
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.configurator_calculator_choice:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\CalculatorChoiceType
+        arguments:
+            $calculators: '%asdoria_configurator_plugin.configurator_calculators%'
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.configurator_item_calculator_choice:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\CalculatorItemChoiceType
+        arguments:
+            $calculators: '%asdoria_configurator_plugin.configurator_item_calculators%'
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form_registry.configurator_calculator:
+        class: Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry
+
+    asdoria_configurator_plugin.form_registry.configurator_item_calculator:
+        class: Sylius\Bundle\ResourceBundle\Form\Registry\FormTypeRegistry
+
+    asdoria_configurator_plugin.form.type.calculator.flat_rate:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\FlatRateConfigurationType
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.channel_based_configurator_calculator.flat_rate:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\ChannelBasedFlatRateConfigurationType
+        tags:
+            - { name: form.type }
+
+
+    asdoria_configurator_plugin.form.type.calculator.default_configurator:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\DefaultConfiguratorConfigurationType
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.calculator.percentage:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\PercentageConfigurationType
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.product_attribute_choice_based_configurator_calculator.choice_percentage_collection:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\ProductAttributeChoiceBasedPercentageConfigurationType
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.product_attribute_choice_based_configurator_calculator.choice_flat_rate_collection:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\ProductAttributeChoiceBasedFlatRateConfigurationType
+        tags:
+            - { name: form.type }
+
+    asdoria_configurator_plugin.form.type.calculator.configurator_item_product_attribute_choices_collection:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\ProductAttributeChoicesCollectionType
+        arguments:
+            $requestStack: '@request_stack'
+            $repository: '@asdoria.repository.configurator_item_product_attribute'
+        tags:
+            - { name: form.type }

@@ -1,0 +1,13 @@
+services:
+    asdoria_configurator_plugin.registry.configurator_calculator:
+        class: Sylius\Component\Registry\ServiceRegistry
+        arguments:
+          $className: Asdoria\SyliusConfiguratorPlugin\Calculator\Model\CalculatorInterface
+          $context: 'configurator calculator'
+          
+    asdoria_configurator_plugin.registry.configurator_item_calculator:
+        class: Sylius\Component\Registry\ServiceRegistry
+        arguments:
+          $className: Asdoria\SyliusConfiguratorPlugin\Calculator\Model\CalculatorInterface
+          $context: 'configurator item calculator'
+

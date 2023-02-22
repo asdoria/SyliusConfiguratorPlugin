@@ -1,0 +1,34 @@
+{
+  "name": "configurator-plugin",
+  "version": "1.0.0",
+  "description": "",
+  "browserslist": [
+    "last 2 version",
+    "not Explorer 11",
+    "not ExplorerMobile 11",
+    "not dead"
+  ],
+  "scripts": {
+    "encore.dev": "encore dev",
+    "encore.prod": "encore production",
+    "encore.watch": "encore dev --watch"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "jquery": "^3.6.0",
+    "semantic-ui-css": "^2.4.1",
+    "slick-carousel": "^1.8.1"
+  },
+  "devDependencies": {
+    "@babel/preset-env": "^7.20.2",
+    "@babel/runtime": "^7.20.13",
+    "@babel/runtime-corejs2": "^7.20.13",
+    "@symfony/webpack-encore": "^4.2.0",
+    "postcss": "^8.4.21",
+    "postcss-loader": "^7.0.2",
+    "sass": "^1.58.0",
+    "sass-loader": "^13.2.0"
+  }
+}

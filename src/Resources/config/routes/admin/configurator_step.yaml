@@ -1,0 +1,22 @@
+asdoria_admin_configurator_step:
+  resource: |
+    alias: asdoria.configurator_step
+    section: admin
+    templates: '@SyliusAdmin\\Crud'
+    except: ['show']
+    redirect: update
+    grid: asdoria_admin_configurator_step
+    permission: true
+    vars:
+       update:
+         templates:
+           breadcrumb: "@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorStep/Update/_breadcrumb.html.twig"
+           form: '@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorStep/_form.html.twig'
+       index:
+         templates:
+           breadcrumb: "@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorStep/Index/_breadcrumb.html.twig"
+       create:
+         templates:
+           breadcrumb: "@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorStep/Create/_breadcrumb.html.twig"
+           form: '@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorStep/_form.html.twig'
+  type: sylius.resource

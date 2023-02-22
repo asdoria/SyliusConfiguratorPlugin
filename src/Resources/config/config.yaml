@@ -1,0 +1,72 @@
+framework:
+    assets:
+        packages:
+            asdoria_sylius_configurator_plugin:
+                base_path: '/bundles/asdoriasyliusconfiguratorplugin'
+
+imports:
+    - "@AsdoriaSyliusConfiguratorPlugin/Resources/config/grids/*.yaml"
+
+
+jms_serializer:
+    metadata:
+        directories:
+            asdoria-sylius-configurator-plugin:
+                namespace_prefix: "Asdoria\\SyliusConfiguratorPlugin"
+                path: "@AsdoriaSyliusConfiguratorPlugin/Resources/config/serializer"
+
+sylius_ui:
+    events:
+        asdoria.admin.configurator.update.javascripts:
+            blocks:
+                comparator:
+                    template: "@AsdoriaSyliusConfiguratorPlugin/Admin/_javascripts.html.twig"
+                    priority: 5
+
+        asdoria.admin.configurator.create.javascripts:
+            blocks:
+                comparator:
+                    template: "@AsdoriaSyliusConfiguratorPlugin/Admin/_javascripts.html.twig"
+                    priority: 5
+
+        asdoria.admin.configurator_step.index.javascripts:
+            blocks:
+                asdoria_configurator_steps_javascripts:
+                    template: "@AsdoriaSyliusConfiguratorPlugin/Admin/_javascripts.html.twig"
+                    priority: 10
+
+
+        asdoria.admin.configurator_item.index.javascripts:
+            blocks:
+                asdoria_configurator_items_javascripts:
+                    template: "@AsdoriaSyliusConfiguratorPlugin/Admin/_javascripts.html.twig"
+                    priority: 10
+
+        asdoria.admin.configurator_item_product_attribute.create.javascripts:
+            blocks:
+                asdoria_configurator_item_product_attributes_javascripts:
+                    template: "@AsdoriaSyliusConfiguratorPlugin/Admin/_javascripts.html.twig"
+                    priority: 10
+
+        asdoria.admin.configurator_item_product_attribute.update.javascripts:
+            blocks:
+                asdoria_configurator_item_product_attributes_javascripts:
+                    template: "@AsdoriaSyliusConfiguratorPlugin/Admin/_javascripts.html.twig"
+                    priority: 10
+
+        asdoria.shop.configurator.stylesheets:
+            blocks:
+                asdoria_configurator_shop_stylesheets:
+                    template: "@AsdoriaSyliusConfiguratorPlugin/Shop/_stylesheets.html.twig"
+                    priority: 5
+        asdoria.shop.configurator.javascripts:
+            blocks:
+                asdoria_configurator_shop_javascripts:
+                    template: "@AsdoriaSyliusConfiguratorPlugin/Shop/_javascripts.html.twig"
+                    priority: 5
+
+        asdoria.admin.configurator_item.update.javascripts:
+            blocks:
+                asdoria_configurator_item_javascripts:
+                    template: "@AsdoriaSyliusConfiguratorPlugin/Admin/_javascripts.html.twig"
+                    priority: 10

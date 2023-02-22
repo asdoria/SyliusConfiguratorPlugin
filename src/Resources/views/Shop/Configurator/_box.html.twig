@@ -1,0 +1,17 @@
+<div class="ui fluid card" {{ sylius_test_html_attribute('product') }}>
+    <a href="{{ path('asdoria_product_shop_configurator_show', {'slug': productConfigurator.slug, '_locale': productConfigurator.translation.locale}) }}" class="blurring dimmable image">
+        <div class="ui dimmer">
+            <div class="content">
+                <div class="center">
+                    <div class="ui inverted button">{{ 'sylius.ui.view_more'|trans }}</div>
+                </div>
+            </div>
+        </div>
+        {% include '@AsdoriaSyliusConfiguratorPlugin/Shop/Configurator/_mainImage.html.twig' %}
+    </a>
+    <div class="content" {{ sylius_test_html_attribute('configurator-content') }}>
+        <a  href="{{ path('asdoria_product_shop_configurator_show', {'slug': productConfigurator.slug, '_locale': productConfigurator.translation.locale}) }}" class="header asdoria-configurator-name center" {{ sylius_test_html_attribute('asdoria-configurator-name', productConfigurator.name) }}>
+            {{ productConfigurator.name }}
+        </a>
+    </div>
+</div>

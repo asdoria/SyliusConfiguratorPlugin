@@ -1,0 +1,85 @@
+services:
+    asdoria.configurator.listener.images_upload:
+        class: Sylius\Bundle\CoreBundle\EventListener\ImagesUploadListener
+        parent: "sylius.listener.images_upload"
+        public: false
+        tags:
+            - { name: kernel.event_listener, event: asdoria.configurator.pre_create, method: uploadImages }
+            - { name: kernel.event_listener, event: asdoria.configurator.pre_update, method: uploadImages }
+            - { name: kernel.event_listener, event: asdoria.configurator_item.pre_update, method: uploadImages }
+            - { name: kernel.event_listener, event: asdoria.configurator_item_additional_product.pre_create, method: uploadImages }
+            - { name: kernel.event_listener, event: asdoria.configurator_item_product_attribute.pre_create, method: uploadImages }
+
+    asdoria.configurator_step.listener.images_upload:
+        parent: sylius.listener.avatar_upload
+        autowire: true
+        autoconfigure: false
+        public: false
+        tags:
+            - { name: kernel.event_listener, event: asdoria.configurator_step.pre_create, method: uploadImage }
+            - { name: kernel.event_listener, event: asdoria.configurator_step.pre_update, method: uploadImage }
+
+    asdoria.configurator.archived_check.listener:
+        class: Asdoria\SyliusConfiguratorPlugin\EventListener\ArchivedCheckListener
+        arguments:
+          $router: '@router'
+          $requestStack: '@request_stack'
+          $configuratorRepository: '@asdoria.repository.configurator'
+          $localeContext: '@sylius.context.locale'
+          $channelContext: '@sylius.context.channel'
+        tags:
+            - { name: kernel.event_listener, event: sylius.product.index,  method: onCheck }
+
+    asdoria.configurator.order_item.listener:
+        class: Asdoria\SyliusConfiguratorPlugin\EventListener\OrderItemListener
+        arguments:
+          $cartContext: '@sylius.context.cart'
+          $orderModifier: '@sylius.order_modifier'
+          $cartManager: '@sylius.manager.order'
+          $flashHelper: '@sylius.resource_controller.flash_helper'
+          $metadataRegistry: '@sylius.resource_registry'
+          $requestStack: '@request_stack'
+          $requestConfigurationFactory: '@sylius.resource_controller.request_configuration_factory'
+        tags:
+            - { name: kernel.event_listener, event: sylius.order_item.pre_configurator,  method: addToCart }
+
+    asdoria.configurator.redirect.subscriber:
+        class: Asdoria\SyliusConfiguratorPlugin\EventListener\RedirectSubscriber
+        arguments:
+            $requestStack: '@request_stack'
+        tags:
+            - { name: kernel.event_subscriber }
+
+    asdoria.configurator.product_attribute_serializer.subscriber:
+        class: Asdoria\SyliusConfiguratorPlugin\EventListener\Serializer\ProductAttributeEntitySubscriber
+        tags:
+            - { name: jms_serializer.event_subscriber }
+
+    asdoria.configurator.configurator_step_serializer.subscriber:
+        class: Asdoria\SyliusConfiguratorPlugin\EventListener\Serializer\ConfiguratorStepEntitySubscriber
+        arguments:
+          $configuratorContext: '@Asdoria\SyliusConfiguratorPlugin\Context\ConfiguratorContext'
+        tags:
+            - { name: jms_serializer.event_subscriber }
+
+    asdoria.configurator.product_variant_serializer.subscriber:
+        class: Asdoria\SyliusConfiguratorPlugin\EventListener\Serializer\ProductVariantEntitySubscriber
+        arguments:
+          $configuratorContext: '@Asdoria\SyliusConfiguratorPlugin\Context\ConfiguratorContext'
+        tags:
+            - { name: jms_serializer.event_subscriber }
+
+    asdoria.configurator.configurator_item_product_attribute_serializer.subscriber:
+        class: Asdoria\SyliusConfiguratorPlugin\EventListener\Serializer\ConfiguratorItemProductAttributeEntitySubscriber
+        tags:
+            - { name: jms_serializer.event_subscriber }
+
+    asdoria.configurator.configurator_item_additional_product_serializer.subscriber:
+        class: Asdoria\SyliusConfiguratorPlugin\EventListener\Serializer\ConfiguratorItemAdditionalProductEntitySubscriber
+        tags:
+            - { name: jms_serializer.event_subscriber }
+
+    asdoria.configurator.product_attribute_value_serializer.subscriber:
+        class: Asdoria\SyliusConfiguratorPlugin\EventListener\Serializer\ProductAttributeValueEntitySubscriber
+        tags:
+            - { name: jms_serializer.event_subscriber }

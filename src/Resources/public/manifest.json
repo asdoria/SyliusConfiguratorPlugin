@@ -1,0 +1,6 @@
+{
+  "bundles/asdoriasyliusconfiguratorplugin/shop-configurator.css": "/bundles/asdoriasyliusconfiguratorplugin/shop-configurator.min.css",
+  "bundles/asdoriasyliusconfiguratorplugin/shop-configurator.js": "/bundles/asdoriasyliusconfiguratorplugin/shop-configurator.min.js",
+  "bundles/asdoriasyliusconfiguratorplugin/admin-configurator.css": "/bundles/asdoriasyliusconfiguratorplugin/admin-configurator.min.css",
+  "bundles/asdoriasyliusconfiguratorplugin/admin-configurator.js": "/bundles/asdoriasyliusconfiguratorplugin/admin-configurator.min.js"
+}

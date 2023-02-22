@@ -1,0 +1,21 @@
+{% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationForm %}
+{% form_theme form '@AsdoriaSyliusConfiguratorPlugin/Admin/Form/imagesTheme.html.twig' %}
+
+{{ form_errors(form) }}
+<div class="ui segments">
+    <div class="ui segment">
+        <div class="two fields">
+            {{ form_row(form.code) }}
+        </div>
+
+        {{ translationForm(form.translations) }}
+
+
+    </div>
+    <div class="ui segment">
+        <div class="field" id="asdoria_configurator_step_image">
+            <label class="required"> {{ 'sylius.ui.image'|trans }}</label>
+            {{ form_widget(form.image, {'label': false}) }}
+        </div>
+    </div>
+</div>

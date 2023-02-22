@@ -1,0 +1,4 @@
+sylius_grid:
+    templates:
+        action:
+            update_configurator_item_positions: "@AsdoriaSyliusConfiguratorPlugin/Admin/Grid/Action/ConfiguratorItem/updatePositions.html.twig"

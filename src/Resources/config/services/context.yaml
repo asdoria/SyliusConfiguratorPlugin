@@ -1,0 +1,7 @@
+services:
+  Asdoria\SyliusConfiguratorPlugin\Context\ConfiguratorContext:
+    public: true
+    arguments:
+      $configuratorRepository: '@asdoria.repository.configurator'
+      $requestStack: '@request_stack'
+      $channelContext: '@sylius.context.channel'

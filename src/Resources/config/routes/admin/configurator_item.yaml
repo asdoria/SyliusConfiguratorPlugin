@@ -1,0 +1,129 @@
+asdoria_admin_configurator_item_index:
+    path: /configurator-items
+    methods: [GET]
+    defaults:
+        _controller: asdoria.controller.configurator_item::indexAction
+        _sylius:
+            grid: asdoria_admin_configurator_item
+            vars:
+                configurator: expr:notFoundOnNull(service('asdoria.repository.configurator').find($configuratorId))
+                templates:
+                    breadcrumb: "@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorItem/Index/_breadcrumb.html.twig"
+                route:
+                    parameters:
+                        configuratorId : $configuratorId
+            section: admin
+            template: '@SyliusAdmin/Crud/index.html.twig'
+
+
+asdoria_admin_configurator_item_update:
+    path: /configurator-items/{id}/edit
+    methods: [GET, PUT]
+    defaults:
+        _controller: asdoria.controller.configurator_item::updateAction
+        _sylius:
+            redirect:
+                route: asdoria_admin_configurator_item_index
+                parameters:
+                    configuratorId : $configuratorId
+            section: admin
+            template: '@SyliusAdmin/Crud/update.html.twig'
+            vars:
+                configurator: expr:notFoundOnNull(service('asdoria.repository.configurator').find($configuratorId))
+                route:
+                    name: asdoria_admin_configurator_item_update
+                    parameters:
+                        configuratorId : $configuratorId
+                        id: $id
+                templates:
+                   form: "@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorItem/_form.html.twig"
+                   toolbar: "@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorItem/Update/_toolbar.html.twig"
+                   breadcrumb: "@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorItem/Update/_breadcrumb.html.twig"
+
+asdoria_admin_configurator_item_create_product_attribute:
+        path: /configurator-items/new/product-attribute
+        methods: [GET, POST]
+        defaults:
+            _controller: asdoria.controller.configurator_item_product_attribute::createAction
+            _sylius:
+                section: admin
+                factory:
+                    method: createForConfigurator
+                    arguments:
+                        - expr:notFoundOnNull(service('asdoria.repository.configurator').find($configuratorId))
+                template: '@SyliusAdmin/Crud/create.html.twig'
+                redirect:
+                    route: asdoria_admin_configurator_item_index
+                    parameters:
+                        configuratorId : $configuratorId
+                vars:
+                    subheader: asdoria.ui.manage_your_configurator_item_product_attribute
+                    templates:
+                        form: '@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorItem/_form.html.twig'
+                        breadcrumb: "@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorItem/Create/ProductAttribute/_breadcrumb.html.twig"
+                    route:
+                        name: asdoria_admin_configurator_item_create_product_attribute
+                        parameters:
+                            configuratorId : $configuratorId
+
+asdoria_admin_configurator_item_create_additional_product:
+        path: /configurator-items/new/additional-product
+        methods: [GET, POST]
+        defaults:
+            _controller: asdoria.controller.configurator_item_additional_product::createAction
+            _sylius:
+                section: admin
+                factory:
+                    method: createForConfigurator
+                    arguments:
+                        - expr:notFoundOnNull(service('asdoria.repository.configurator').find($configuratorId))
+                template: '@SyliusAdmin/Crud/create.html.twig'
+                redirect:
+                    route: asdoria_admin_configurator_item_index
+                    parameters:
+                        configuratorId: $configuratorId
+                vars:
+                    subheader: asdoria.ui.manage_your_configurator_item_additional_product
+                    templates:
+                        form: '@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorItem/_form.html.twig'
+                        breadcrumb: "@AsdoriaSyliusConfiguratorPlugin/Admin/ConfiguratorItem/Create/AdditionalProduct/_breadcrumb.html.twig"
+                    route:
+                        name: asdoria_admin_configurator_item_create_additional_product
+                        parameters:
+                            configuratorId : $configuratorId
+
+asdoria_admin_configurator_item_delete:
+    path: /configurator-items/{id}
+    methods: [DELETE]
+    defaults:
+        _controller: asdoria.controller.configurator_item::deleteAction
+        _sylius:
+            redirect:
+                route: asdoria_admin_configurator_item_index
+                parameters:
+                    configuratorId : $configuratorId
+            section: admin
+            vars:
+                route:
+                    parameters:
+                        configuratorId : $configuratorId
+
+asdoria_admin_configurator_item_product_attribute_index:
+    path: /configurator-item-product-attributes
+    methods: [GET]
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: asdoria_admin_configurator_item_index
+        parameters:
+            configuratorId : $configuratorId
+        permanent: true
+
+asdoria_admin_configurator_item_additional_product_index:
+    path: /configurator-item-additional-products
+    methods: [GET]
+    controller: Symfony\Bundle\FrameworkBundle\Controller\RedirectController::redirectAction
+    defaults:
+        route: asdoria_admin_configurator_item_index
+        parameters:
+            configuratorId : $configuratorId
+        permanent: true

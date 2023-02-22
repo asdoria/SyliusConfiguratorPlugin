@@ -1,0 +1,9 @@
+asdoria_sylius_web_image_shop:
+    resource: "@AsdoriaSyliusWebImagePlugin/Resources/config/shop_routing.yml"
+    prefix: /{_locale}
+    requirements:
+        _locale: ^[a-z]{2}(?:_[A-Z]{2})?$
+
+asdoria_sylius_web_image_admin:
+    resource: "@AsdoriaSyliusWebImagePlugin/Resources/config/admin_routing.yml"
+    prefix: /admin

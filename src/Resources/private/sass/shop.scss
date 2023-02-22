@@ -1,0 +1,74 @@
+.raw-hide {
+    display: none !important;
+}
+.package-error {
+    font-weight: bold !important;
+    color: #9F3A38 !important;
+}
+
+.productVariants {
+    display: flex !important;
+    flex-wrap: wrap;
+}
+
+
+
+.productVariants .field > div {
+    height: 100%;
+}
+
+.productVariants label {
+    display: flex !important;
+    flex-direction: column;
+    width: auto;
+    height: 100%;
+    text-align: center;
+    padding: 10px !important;
+    margin-left: 4.5rem;
+    border: solid 1px #d2d2d2;
+}
+
+.productVariants label div {
+    /*width: 200px;*/
+    /*height: 200px;*/
+}
+
+.productVariants label div img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.productVariants label span {
+    display: block;
+    margin-top: 10px;
+}
+
+.productVariants label:before {
+    content: none !important;
+}
+
+.productVariants label:after {
+    content: none !important;
+    opacity: 0 !important;
+}
+
+.productVariants input:checked ~label {
+    border: solid 1px #ff6461;
+}
+
+.productVariant.field {
+    width: 33.33%;
+}
+
+.productVariant.field label .header {
+    word-break: break-word;
+}
+
+.configuratorpage .carousel-nav .carousel-left,
+.configuratorpage .carousel-nav .carousel-right {
+    color: #22b99a!important;
+}
+
+.configuratorpage .ui.toggle.checkbox {
+    max-width: 100%;
+}

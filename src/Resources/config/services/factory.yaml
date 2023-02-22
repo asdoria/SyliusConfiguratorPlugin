@@ -1,0 +1,18 @@
+services:
+#  asdoria_configurator_plugin.custom_factory.order_item:
+#    class: Asdoria\SyliusConfiguratorPlugin\Factory\CartItemFactory
+#    decorates: sylius.factory.order_item
+#    decoration_priority: 155
+#    arguments:
+#      $decoratedFactory: '@asdoria_configurator_plugin.custom_factory.order_item.inner'
+#      $attributeValueFactory: '@asdoria.factory.order_item_attribute_value'
+
+  Asdoria\SyliusConfiguratorPlugin\Factory\AddToCartCommandFactory: ~
+  Asdoria\SyliusConfiguratorPlugin\Factory\ConfiguratorAddToCartCommandFactory:
+    arguments:
+      $cartContext: '@sylius.context.cart'
+      $configuratorContext: '@Asdoria\SyliusConfiguratorPlugin\Context\ConfiguratorContext'
+      $orderItemFactory: '@sylius.factory.order_item'
+      $addToCartCommandFactory: '@Asdoria\SyliusConfiguratorPlugin\Factory\AddToCartCommandFactory'
+      $orderItemQuantityModifier: '@sylius.order_item_quantity_modifier'
+      $orderItemAttributeValueFactory: '@asdoria.factory.order_item_attribute_value'

@@ -1,0 +1,10 @@
+Asdoria\SyliusConfiguratorPlugin\Entity\ConfiguratorImage:
+    properties:
+        type: ~
+        file:
+            - Image:
+                maxSize: 10M
+#                 maxSizeMessage: sylius.product_image.file.max_size
+#                 uploadIniSizeErrorMessage: sylius.product_image.file.upload_ini_size
+                groups: [sylius, asdoria_configurator_plugin]
+

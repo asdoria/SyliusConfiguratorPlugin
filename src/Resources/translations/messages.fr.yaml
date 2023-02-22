@@ -1,0 +1,83 @@
+asdoria:
+    menu:
+        admin:
+            main:
+                product:
+                    header: Product
+    ui:
+        summary_item_attribute_value: Customisation
+        duplicate: Dupliquer
+        next: Suivant
+        before: Precedent
+        reset: Réinitialiser
+        configurators: Configurateurs de Produit
+        configurator: Configurateur de Produit
+        new_configurator: Nouveau Configurateur
+        edit_configurator: Modifier un Configurateur
+        count: Nombre
+        calculator: Calculateur
+        slug: Slug
+        updated_at: Mise à jour
+        show_configurator_in_shop_page: Afficher le Configurateur dans la boutique
+        configurators_step_1: Etape 1
+        configurator_step: Etape
+        manage_configurator_step: Gestion Des Etapes
+        configurator_steps: Etapes de configuration
+        manage_your_configurator_steps: Gestion Des Etapes de configuration
+        edit_configurator_step: Modifier une Etape
+        edit_configurator_item: Modifier une configuration
+        new_configurator_step: Creation d'une Etape
+        manage_your_configurator_items: Gestions des configurations
+        configurator_items: Liste des configurations
+        new_configurator_item_create_product_attribute: Creation d'une configuration de type attribute
+        new_configurator_item_create_additional_product: Creation d'une configuration de type product additionnel
+        new_configurator_item_product_attribute: Creation d'une configuration de type pproduct attribute
+        new_configurator_item_additional_product: Creation d'une configuration de type product attribute
+        manage_your_configurator_item: Gestions des configurations
+        manage_configurator_item_create: Creation d'une configuration
+        manage_your_configurator_item_additional_product: Gestions des configurations
+        manage_your_configurator_item_product_attribute: Gestions des configurations
+    form:
+        configurator:
+            name: Nom
+            description: Description
+            slug: Slug
+            enabled: Activer le Configurateur
+            images: Images
+            meta_title: Meta Title
+            meta_description: Meta Description
+            meta_keywords: Meta Keywords
+            meta_robots: Meta Robots
+            meta_canonical: Meta Canonical
+            products: Séléction du produit
+            configurator_step: Choix de l'étape
+            calculator: Calculateur de prix
+        configurator_step:
+            label: Nom de l'étape
+            description: Description
+            position: Position
+        configurator_item:
+            label: Nom
+            description: Description
+            images: Images
+            position: Position
+            configurator_step: Choix de l'étape
+        configurator_item_product_attribute:
+            product_attribute: Attribute
+            is_required: L'attribute doit être requis
+            select:
+                multiple: Selection multiple (uniquement pour les attribute de type select Multiple)
+        configurator_item_additional_product:
+            product: Produit Additionnel
+        configurator_calculator:
+            flat_rate_configuration:
+                label: Tarif Unique
+                amount: Montant
+            default_configurator_configuration:
+                label: Calculateur par Default
+            percentage_configuration:
+                label: Pourcentage Unique
+            product_attribute_choice_flat_rate_configuration:
+                label: Tarif Unique Par choix
+            product_attribute_choice_percentage_configuration:
+                label: Pourcentage Unique Par choix

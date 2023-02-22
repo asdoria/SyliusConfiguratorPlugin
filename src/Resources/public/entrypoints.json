@@ -1,0 +1,20 @@
+{
+  "entrypoints": {
+    "shop-configurator": {
+      "css": [
+        "/bundles/asdoriasyliusconfiguratorplugin/shop-configurator.min.css"
+      ],
+      "js": [
+        "/bundles/asdoriasyliusconfiguratorplugin/shop-configurator.min.js"
+      ]
+    },
+    "admin-configurator": {
+      "css": [
+        "/bundles/asdoriasyliusconfiguratorplugin/admin-configurator.min.css"
+      ],
+      "js": [
+        "/bundles/asdoriasyliusconfiguratorplugin/admin-configurator.min.js"
+      ]
+    }
+  }
+}

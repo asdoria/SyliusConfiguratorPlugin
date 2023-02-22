@@ -1,0 +1,5 @@
+{% extends '@SyliusAdmin/Form/theme.html.twig' %}
+
+{% block asdoria_product_attribute_autocomplete_choice_row %}
+    {{ form_row(form, {'remote_url': path('asdoria_admin_ajax_product_attribute_by_name_phrase'), 'load_edit_url': path('asdoria_admin_ajax_product_attribute_by_code')}) }}
+{% endblock %}

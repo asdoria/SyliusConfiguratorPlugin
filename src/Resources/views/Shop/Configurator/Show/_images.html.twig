@@ -1,0 +1,37 @@
+<div class="sixteen wide tablet eight wide computer column">
+    {% set images = configurator.imagesByType(currentStep.code)|merge(configurator.imagesByType('main')) %}
+    {% if form.cartItem.variant.vars.data is not empty %}
+        {% set product = form.cartItem.variant.vars.data.product %}
+        {% set images =  product.imagesByType(currentStep.code)|merge(images) %}
+    {% endif %}
+
+    {% if images|length > 1 %}
+        <div class="carousel-wrapper">
+            <div class="carousel-single">
+                {% for image in images %}
+                    <div class="carousel-item">
+                        <div class="ui fluid card">
+                            <img src="{{ image.path|imagine_filter('sylius_shop_product_original') }}" class="js-image-switcher-image ui bordered image" data-image-type="{{ image.type }}" alt="{{ configurator.name }}">
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+
+            <div class="carousel-nav ui center aligned grid">
+                <div class="row">
+                    <div class="column">
+                        <button class="carousel-left ui huge black icon button">
+                            <i class="left arrow icon"></i>
+                        </button>
+                        <button class="carousel-right ui huge black icon button">
+                            <i class="right arrow icon"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% elseif images|length == 1 %}
+        {% set image = images|first %}
+        <img src="{{ image.path|imagine_filter('sylius_shop_product_original') }}" class="ui bordered image" alt="{{ configurator.name }}">
+    {% endif %}
+</div>

@@ -1,0 +1,12 @@
+{% form_theme form '@AsdoriaSyliusConfiguratorPlugin/Admin/Form/theme.html.twig' %}
+
+<div class="ui tab" data-tab="products">
+    <h3 class="ui dividing header">{{ 'asdoria.form.configurator.configurator_step'|trans }}</h3>
+    <br>
+    {{ form_row(form.configuratorStep, {'label': false}) }}
+    <br/>
+    <h3 class="ui dividing header">{{ 'asdoria.form.configurator.products'|trans }}</h3>
+    <br>
+    {{ form_row(form.products, {'label': false}) }}
+    <br/>
+</div>

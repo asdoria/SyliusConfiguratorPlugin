@@ -1,0 +1,48 @@
+{% extends '@SyliusShop/layout.html.twig' %}
+
+{% block metatags %}
+    {{ parent() }}
+    <meta name="description" content="{{ configurator.translation.metaDescription }}">
+    <meta name="keywords" content="{{ configurator.translation.metaKeywords }}">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ sylius_template_event('asdoria.shop.configurator.stylesheets') }}
+{% endblock %}
+{% block title %}{{ configurator.name }}{% endblock %}
+
+{% block content %}
+    {% include '@AsdoriaSyliusConfiguratorPlugin/Shop/Configurator/Header/_breadcrumb.html.twig' with { productConfigurator: configurator } %}
+
+    {% if form is defined %}
+        {% form_theme form '@AsdoriaSyliusConfiguratorPlugin/Shop/Form/add_to_cart_theme.html.twig' %}
+    {% endif %}
+    <h1 class="ui monster section dividing header">
+        {{ configurator.name }}
+        <div class="sub header">
+            {{ configurator.description }}
+        </div>
+    </h1>
+
+    <div class="configuratorpage ui two column stackable grid">
+        {% include '@AsdoriaSyliusConfiguratorPlugin/Shop/Configurator/Show/_images.html.twig' %}
+        <div class="sixteen wide tablet eight wide computer column">
+            {% include '@AsdoriaSyliusConfiguratorPlugin/Shop/Configurator/Show/_price.html.twig' %}
+            {% include '@AsdoriaSyliusConfiguratorPlugin/Shop/Configurator/Show/_form.html.twig' %}
+            {{ sylius_template_event('sylius.shop.configurator.show.content', _context) }}
+        </div>
+    </div>
+    {% if form.cartItem.variant.vars.data is not empty %}
+        {% set product = form.cartItem.variant.vars.data.product %}
+        {{ render(path('sylius_shop_partial_product_show_by_slug', {
+            'slug': product.slug,
+            'template': '@SyliusShop/Product/Show/_tabs.html.twig'
+        })) }}
+    {% endif %}
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    {{ sylius_template_event('asdoria.shop.configurator.javascripts') }}
+{% endblock %}

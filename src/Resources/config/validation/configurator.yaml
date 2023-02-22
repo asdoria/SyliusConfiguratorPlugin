@@ -1,0 +1,15 @@
+Asdoria\SyliusConfiguratorPlugin\Entity\Configurator:
+    properties:
+        translations:
+            - Valid:
+                groups: [sylius, asdoria_configurator_plugin]
+        images:
+            - Valid:
+                groups: [sylius, asdoria_configurator_plugin]
+        calculator:
+            - NotBlank:
+                groups: [sylius, asdoria_configurator_plugin]
+        products:
+            - Count:
+                min: 1
+                groups: [ sylius, asdoria_configurator_plugin ]

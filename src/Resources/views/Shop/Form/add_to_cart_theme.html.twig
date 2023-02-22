@@ -1,0 +1,134 @@
+{% extends '@SyliusUi/Form/theme.html.twig' %}
+
+{% block asdoria_configurator_order_item_attribute_value_errors %}
+    {%- if errors|length > 0 -%}
+        {%- for error in errors -%}
+            <div class="ui red {% if form.parent is not empty %}pointing {% endif %}label sylius-validation-error" {{ sylius_test_html_attribute('validation-error') }} {% if form.parent is empty %} style="margin-bottom: 10px;"{% endif %}>
+                {{ error.message }}
+            </div>
+        {%- endfor -%}
+    {%- endif -%}
+{% endblock %}
+
+{% block asdoria_configurator_order_item_attribute_value_widget %}
+    {{- form_widget(form) -}}
+    {{- form_help(form) -}}
+    {{- form_errors(form) -}}
+{% endblock %}
+
+{% block asdoria_configurator_order_item_variant_widget -%}
+    {% apply spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            <div class="grouped fields productVariants">
+                {% for key, choice in choices %}
+                    <div class="field productVariant">
+                        {% set child      =  form[key] %}
+                        {% set image_path = child.vars.attr.image_path %}
+                        {% set path       = asset('assets/admin/img/200x200.png') %}
+                        {% if  image_path is not null %}
+                            {% set path = image_path|imagine_filter(filter|default('sylius_shop_product_thumbnail')) %}
+                        {% endif %}
+                        <div class="ui toggle checkbox" data-img="{{ path }}">
+                            {% if not compound -%}
+                                {% set label_attr = label_attr|merge({'for': id}) %}
+                            {%- endif -%}
+                            {% if required -%}
+                                {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+                            {%- endif -%}
+                            {% set label_attr = label_attr|merge({'data-img': path|default('')|trim}) %}
+                            {% if label is empty -%}
+                                {%- if label_format is not empty -%}
+                                    {% set label = label_format|replace({
+                                        '%name%': name,
+                                        '%id%': id,
+                                    }) %}
+                                {%- else -%}
+                                    {% set label = name|humanize %}
+                                {%- endif -%}
+                            {%- endif -%}
+                            <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}
+                            >
+                            <div class="ui card">
+                                <div class="image">
+                                    <img src="{{ path }}">
+                                </div>
+                                <div class="content">
+                                    <a class="header">{{ child.vars.attr.code|default('') }}</a>
+                                    <div class="meta">
+                                        <span class="date">{{ child.vars.attr.name|default('') }}</span>
+                                    </div>
+                                </div>
+                                <div class="extra content">
+                                    <a>
+{#                                        <i class="user icon"></i>#}
+                                        <div class="rating">
+                                            <div class="ui star rating" data-rating="{{child.vars.attr.rating|default(0) }}" data-max-rating="5" style="pointer-events: none;"></div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            </label>
+
+                            {{- form_widget(child) -}}
+                        </div>
+                    </div>
+                {% endfor -%}
+            </div>
+        </div>
+    {% endapply %}
+{%- endblock asdoria_configurator_order_item_variant_widget %}
+
+
+{% block asdoria_configurator_order_item_variant_group_by_product_widget -%}
+    {% apply spaceless %}
+        <div {{ block('widget_container_attributes') }}>
+            {% for group_label, group in choices %}
+                <div class="ui basic segment">
+                    <p class="ui horizontal divider"><i>{{ group_label|trans({}, translation_domain) }}</i></p>
+                    <div class="grouped fields productVariants">
+                        {% for key, choice in group %}
+                            <div class="field productVariant">
+                                {% set child      =  form[key] %}
+                                {% set image_path = child.vars.attr.image_path %}
+                                {% set path       = asset('assets/admin/img/200x200.png') %}
+                                {% if  image_path is not null %}
+                                    {% set path = image_path|imagine_filter(filter|default('sylius_shop_product_thumbnail')) %}
+                                {% endif %}
+                                <div class="ui toggle checkbox" data-img="{{ path }}">
+                                    {% if not compound -%}
+                                        {% set label_attr = label_attr|merge({'for': id}) %}
+                                    {%- endif -%}
+                                    {% if required -%}
+                                        {% set label_attr = label_attr|merge({'class': (label_attr.class|default('') ~ ' required')|trim}) %}
+                                    {%- endif -%}
+                                    {% set label_attr = label_attr|merge({'data-img': path|default('')|trim}) %}
+                                    {% if label is empty -%}
+                                        {%- if label_format is not empty -%}
+                                            {% set label = label_format|replace({
+                                                '%name%': name,
+                                                '%id%': id,
+                                            }) %}
+                                        {%- else -%}
+                                            {% set label = name|humanize %}
+                                        {%- endif -%}
+                                    {%- endif -%}
+                                    <label{% for attrname, attrvalue in label_attr %} {{ attrname }}="{{ attrvalue }}"{% endfor %}
+                                    >
+                                    <div>
+                                        <img src="{{ path }}">
+                                    </div>
+                                    <div class="content">
+                                        <a class="header">{{ child.vars.attr.code }}</a>
+                                    </div>
+                                    </label>
+
+                                    {{- form_widget(child) -}}
+                                </div>
+                            </div>
+                        {% endfor -%}
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    {% endapply %}
+{%- endblock asdoria_configurator_order_item_variant_group_by_product_widget %}

@@ -1,0 +1,31 @@
+{% from '@SyliusAdmin/Macro/translationForm.html.twig' import translationForm %}
+
+<div class="ui active tab" data-tab="details">
+    <h3 class="ui dividing header">{{ 'sylius.ui.details'|trans }}</h3>
+    {{ form_errors(form) }}
+
+    <div class="ui segment">
+        <div class="two fields">
+            {{ form_row(form.code) }}
+            {{ form_row(form.position) }}
+        </div>
+        {{ form_row(form.configuratorStep) }}
+        {% if form.productAttribute is defined %}
+            {{ form_row(form.productAttribute) }}
+            {% if form.multiple is defined %}
+                {{ form_row(form.multiple) }}
+            {% endif %}
+            {% if form.required is defined %}
+                {{ form_row(form.required) }}
+            {% endif %}
+        {% endif %}
+
+        {% if form.product is defined %}
+            {{ form_row(form.product) }}
+        {% endif %}
+    </div>
+
+    {{ translationForm(form.translations) }}
+</div>
+
+

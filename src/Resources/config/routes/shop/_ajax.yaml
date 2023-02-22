@@ -1,0 +1,19 @@
+asdoria_configurator_shop_ajax_configurator_show_by_slug:
+    path: /by-slug/{slug}
+    methods: [GET]
+    defaults:
+        _controller: asdoria.controller.configurator::showAction
+        _format: json
+        _sylius:
+            serialization_groups: [ AddToCartItem ]
+            repository:
+                method: findOneBySlug
+                arguments:
+                    slug: $slug
+                    locale: "expr:service('sylius.context.locale').getLocaleCode()"
+                    channel: "expr:service('sylius.context.channel').getChannel()"
+    requirements:
+        slug: .+
+    options:
+        expose: true
+
