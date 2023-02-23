@@ -1,8 +1,8 @@
 {
     "name": "asdoria/sylius-configurator-plugin",
     "type": "sylius-plugin",
-    "description": "Create the page products with muti criteria for you shop",
-    "keywords": ["asdoria", "sylius", "sylius-plugin", "product", "attribute"],
+    "description": "Create the Product configurator - Product customization for you shop",
+    "keywords": ["asdoria", "sylius", "sylius-plugin", "product", "attribute", "configuratior"],
     "authors": [
         {
             "name": "Asdoria",
@@ -12,8 +12,7 @@
     "license": "MIT",
     "require": {
         "php": "^7.4|^8.0",
-        "asdoria/sylius-facet-filter-plugin": "^0.1",
-        "sylius/sylius": "^1.9"
+        "sylius/sylius": "^1.11"
     },
     "require-dev": {
         "behat/behat": "^3.6.1",
@@ -38,11 +37,11 @@
         "phpunit/phpunit": "^9.5",
         "sensiolabs/security-checker": "^6.0",
         "sylius-labs/coding-standard": "^4.0",
-        "symfony/browser-kit": "^4.4 || ^5.2",
-        "symfony/debug-bundle": "^4.4 || ^5.2",
-        "symfony/dotenv": "^4.4 || ^5.2",
-        "symfony/intl": "^4.4 || ^5.2",
-        "symfony/web-profiler-bundle": "^4.4 || ^5.2",
+        "symfony/browser-kit": "^4.4 || ^5.2 || ^6.2",
+        "symfony/debug-bundle": "^4.4 || ^5.2 || ^6.2",
+        "symfony/dotenv": "^4.4 || ^5.2 || ^6.2",
+        "symfony/intl": "^4.4 || ^5.2 || ^6.2",
+        "symfony/web-profiler-bundle": "^4.4 || ^5.2 || ^6.2",
         "vimeo/psalm": "4.7.1",
         "polishsymfonycommunity/symfony-mocker-container": "^1.0"
     },
