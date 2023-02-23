@@ -3,6 +3,10 @@ asdoria_configurator_shop_configurator:
     methods: [GET, POST]
     defaults:
         _controller: Asdoria\SyliusConfiguratorPlugin\Controller\Shop\AddToCartController
+    requirements:
+        slug: .+
+    options:
+        expose: true
 
 asdoria_product_shop_configurator_ajax:
     prefix: /ajax

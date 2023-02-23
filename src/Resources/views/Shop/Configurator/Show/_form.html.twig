@@ -12,16 +12,21 @@
     {% for step in configurator.getConfiguratorSteps() %}
         <div class="ui bottom attached {% if activeSteps|last == step %}active{% endif %} tab segment" data-tab="configurator-tab-{{ loop.index }}">
             <h3 class="ui top attached label">{{ step.description }}</h3>
+            {% set attributeValues = form.cartItem.attributes.children|filter(item => item.vars.data.configuratorStep == step)  %}
+            {% set additionalFormItems = form.additionalItems.children|filter(item => item.children.cartItem.vars.attr.step == step.code)  %}
             {% if loop.first %}
                 {{ form_row(form.cartItem.quantity) }}
                 {{ form_row(form.cartItem.variant) }}
+                {% for row in attributeValues %}
+                    {{ form_row(row) }}
+                {% endfor %}
             {% else %}
                 <div  class="ui segment center aligned">
-                    {% for row in form.cartItem.attributes.children|filter(item => item.vars.data.configuratorStep == step)%}
+                    {% for row in attributeValues %}
                         {{ form_widget(row) }}
                         {{ form_errors(row) }}
                     {% endfor %}
-                    {% for additionalFormItem in form.additionalItems.children|filter(item => item.children.cartItem.vars.attr.step == step.code)%}
+                    {% for additionalFormItem in additionalFormItems %}
                         {{ form_row(additionalFormItem.cartItem.quantity) }}
                         {{ form_label(additionalFormItem.cartItem.variant) }}
                         {{ form_widget(additionalFormItem.cartItem.variant, {'attr': {'class': 'ui center aligned'}}) }}

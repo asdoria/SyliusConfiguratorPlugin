@@ -121,7 +121,7 @@ class ConfiguratorAddToCartItemType extends AbstractResourceType
             $amount = $variant->getChannelPricingForChannel($this->channelContext->getChannel())?->getPrice();
             $price  = $this->moneyFormatter->format($amount, $this->currencyContext->getCurrencyCode());
             $attr = [
-                'image_path' => $image?->getPath(),
+                'image_path' => $image instanceof ImageInterface ? $image?->getPath(): null,
                 'code'  => $product->isSimple() ? $product->getCode(): $variant->getCode(),
                 'name'  => sprintf('%s (+%s)',$name, $price),
                 'rating'=> $product->getAverageRating(),
