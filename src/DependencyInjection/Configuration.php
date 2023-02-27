@@ -60,7 +60,7 @@ class Configuration implements ConfigurationInterface
      */
     public function getConfigTreeBuilder()
     {
-        $treeBuilder = new TreeBuilder('asdoria_configurator');
+        $treeBuilder = new TreeBuilder('asdoria_sylius_configurator');
         $rootNode = $treeBuilder->getRootNode();
 
         $rootNode
