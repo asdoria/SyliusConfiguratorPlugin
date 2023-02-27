@@ -1,3 +1,7 @@
+asdoria_product_shop_configurator_ajax:
+    prefix: /ajax
+    resource: 'shop/_ajax.yaml'
+
 asdoria_configurator_shop_configurator:
     path: /{slug}
     methods: [GET, POST]
@@ -7,7 +11,3 @@ asdoria_configurator_shop_configurator:
         slug: .+
     options:
         expose: true
-
-asdoria_product_shop_configurator_ajax:
-    prefix: /ajax
-    resource: 'shop/_ajax.yaml'
