@@ -10,6 +10,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Attribute\Model\Attribute;
 use Sylius\Component\Core\Model\ImageInterface;
+use Sylius\Component\Core\Model\ImagesAwareInterface;
+use Sylius\Component\Core\Model\ProductImagesAwareInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
 use Sylius\Component\Product\Model\ProductAttributeInterface;
@@ -107,18 +109,25 @@ class ProductVariantEntitySubscriber extends AbstractEntitySubscriber
      */
     public function getPath(ProductVariantInterface $variant): ?string
     {
-        /** @var ProductInterface $product */
-        $product = $variant->getProduct();
-        if ($product->getImages()->isEmpty()) {
+        $image =  $this->guessImage($variant);
+
+        if (!$image instanceof ImageInterface) {
             return null;
         }
 
-        $image =  $product->getImagesByType('thumnails')->first();
+        return $image->getPath();
+    }
 
-        if (!$image instanceof ImageInterface) {
-            $image = $product->getImages()->first();
+    protected function guessImage(ImagesAwareInterface|ProductImagesAwareInterface $resource): ?ImageInterface {
+        $image = $resource->getImagesByType('thumbnail')->first();
+        if ($image instanceof ImageInterface) {
+            return $image;
         }
 
-        return $image->getPath();
+        if ($resource instanceof ProductVariantInterface) {
+            return $this->guessImage($resource->getProduct());
+        }
+
+        return !$resource->getImages()->isEmpty() ? $resource->getImages()->first() : null;
     }
 }
