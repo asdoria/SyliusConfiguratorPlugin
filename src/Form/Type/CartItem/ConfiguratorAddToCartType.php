@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Asdoria\SyliusConfiguratorPlugin\Form\Type\CartItem;
 
-use AppBundle\Form\Type\Cart\CartItemChildrenType;
+
 use Asdoria\SyliusConfiguratorPlugin\Context\Model\ConfiguratorContextInterface;
 use Asdoria\SyliusConfiguratorPlugin\Controller\Shop\ConfiguratorAddToCartCommandInterface;
 use Asdoria\SyliusConfiguratorPlugin\Factory\Model\ConfiguratorAddToCartCommandFactoryInterface;
