@@ -233,3 +233,9 @@ services:
             $repository: '@asdoria.repository.configurator_item_product_attribute'
         tags:
             - { name: form.type }
+
+
+    asdoria_configurator_plugin.form.type.configurator_step_auto_complete_choice:
+        class: Asdoria\SyliusConfiguratorPlugin\Form\Type\ConfiguratorStepAutocompleteChoiceType
+        tags:
+            - { name: form.type }

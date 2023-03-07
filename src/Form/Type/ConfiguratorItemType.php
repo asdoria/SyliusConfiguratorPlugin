@@ -8,6 +8,7 @@ use Asdoria\SyliusConfiguratorPlugin\Entity\ConfiguratorStep;
 use Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\Trait\CalculatorTypeTrait;
 use Asdoria\SyliusConfiguratorPlugin\Form\EventSubscriber\ItemAdditionalProductTypeFormSubscriber;
 use Asdoria\SyliusConfiguratorPlugin\Form\EventSubscriber\ItemProductAttributeTypeFormSubscriber;
+use Asdoria\SyliusConfiguratorPlugin\Model\ConfiguratorStepInterface;
 use Asdoria\SyliusConfiguratorPlugin\Traits\CalculatorRegistryTrait;
 use Asdoria\SyliusConfiguratorPlugin\Traits\FormBuilderTrait;
 use Asdoria\SyliusConfiguratorPlugin\Traits\FormTypeRegistryTrait;
@@ -47,9 +48,8 @@ class ConfiguratorItemType extends AbstractResourceType
                 'entry_type' => ConfiguratorItemTranslationType::class,
                 'label' => 'asdoria.form.configurator_items.translations',
             ])
-            ->add('configuratorStep', EntityType::class, [
+            ->add('configuratorStep', ConfiguratorStepAutocompleteChoiceType::class, [
                 'label'    => 'asdoria.form.configurator_item.configurator_step',
-                'class'    => ConfiguratorStep::class,
                 'required' => true,
             ])
             ->add('images', CollectionType::class, [

@@ -2,10 +2,6 @@ asdoria_admin_configurator_ajax:
     resource: 'configurator.yaml'
     prefix: /configurators
 
-asdoria_admin_product_attribute_ajax:
-    resource: 'product_attribute.yaml'
-    prefix: /product-attributes
-
 asdoria_admin_configurator_step_ajax:
     resource: 'configurator_step.yaml'
     prefix: /configurator-steps

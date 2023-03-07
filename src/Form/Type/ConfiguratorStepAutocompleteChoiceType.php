@@ -11,14 +11,14 @@ use Symfony\Component\Form\FormView;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 
-final class ProductAttributeAutocompleteChoiceType extends AbstractType
+final class ConfiguratorStepAutocompleteChoiceType extends AbstractType
 {
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'resource' => 'sylius.product_attribute',
+            'resource' => 'asdoria.configurator_step',
             'choice_name' => 'name',
-            'choice_value' => 'code',
+            'choice_value' => 'id',
         ]);
     }
 
@@ -33,7 +33,7 @@ final class ProductAttributeAutocompleteChoiceType extends AbstractType
 
     public function getBlockPrefix(): string
     {
-        return 'asdoria_product_attribute_autocomplete_choice';
+        return 'asdoria_configurator_step_autocomplete_choice';
     }
 
     public function getParent(): string

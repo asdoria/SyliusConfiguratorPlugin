@@ -40,6 +40,7 @@ class ProductVariantEntitySubscriber extends AbstractEntitySubscriber
         return [
             'getId'          => ['AddToCartItem'],
             'getCode'        => ['AddToCartItem'],
+            'getName'        => ['AddToCartItem'],
             'getProductName' => ['AddToCartItem'],
             'getPath'        => ['AddToCartItem'],
             'getAttributeValues'  => ['AddToCartItem'],
@@ -51,9 +52,19 @@ class ProductVariantEntitySubscriber extends AbstractEntitySubscriber
      *
      * @return string|null
      */
-    public function getCode(ProductVariantInterface $variant): ?string
+    public function getName(ProductVariantInterface $variant): ?string
     {
         return $variant->getName();
+    }
+
+    /**
+     * @param ProductVariantInterface $variant
+     *
+     * @return string|null
+     */
+    public function getCode(ProductVariantInterface $variant): ?string
+    {
+        return $variant->getCode();
     }
 
     /**

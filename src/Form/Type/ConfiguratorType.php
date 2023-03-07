@@ -9,6 +9,7 @@ namespace Asdoria\SyliusConfiguratorPlugin\Form\Type;
 use Asdoria\SyliusConfiguratorPlugin\Entity\ConfiguratorStep;
 use Asdoria\SyliusConfiguratorPlugin\Form\Type\Calculator\Trait\CalculatorTypeTrait;
 use Asdoria\SyliusConfiguratorPlugin\Form\EventSubscriber\CalculatorTypeFormSubscriber;
+use Asdoria\SyliusConfiguratorPlugin\Model\ConfiguratorStepInterface;
 use Asdoria\SyliusConfiguratorPlugin\Traits\CalculatorRegistryTrait;
 use Asdoria\SyliusConfiguratorPlugin\Traits\FormBuilderTrait;
 use Asdoria\SyliusConfiguratorPlugin\Traits\FormTypeRegistryTrait;
@@ -67,13 +68,9 @@ class ConfiguratorType extends AbstractResourceType
                 'choice_name' => 'name',
                 'choice_value' => 'code',
                 'resource' => 'sylius.product',
-//                'constraints' => [
-//                    new NotBlank(['groups' => ['sylius', 'asdoria_configurator_plugin'], 'message' => 'sylius.catalog_promotion_scope.for_products.not_empty']),
-//                ],
             ])
-            ->add('configuratorStep', EntityType::class, [
+            ->add('configuratorStep', ConfiguratorStepAutocompleteChoiceType::class, [
                 'label'    => 'asdoria.form.configurator.configurator_step',
-                'class'    => ConfiguratorStep::class,
                 'required' => true,
             ])
             ->add('enabled', CheckboxType::class, [
