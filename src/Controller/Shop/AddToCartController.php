@@ -138,6 +138,7 @@ class AddToCartController
         $errors = $form->getErrors(true);
         $additionalItemsPrice = 0;
         foreach ($configuratorAddToCartCommand->getAddToCartCommandAdditionalItems() as $addToCartCommandAdditionalItem) {
+            if (!$addToCartCommandAdditionalItem->getCartItem()->getVariant() instanceof ProductVariantInterface) continue;
             $this->orderModifier->addToOrder($addToCartCommandAdditionalItem->getCart(), $addToCartCommandAdditionalItem->getCartItem());
             $additionalItemsPrice += $addToCartCommandAdditionalItem->getCartItem()->getTotal();
             $this->orderModifier->removeFromOrder($addToCartCommandAdditionalItem->getCart(), $addToCartCommandAdditionalItem->getCartItem());
