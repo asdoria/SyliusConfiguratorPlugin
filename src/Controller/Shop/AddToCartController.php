@@ -136,11 +136,19 @@ class AddToCartController
      */
     protected function createView(FormInterface $form, ConfiguratorAddToCartCommandInterface $configuratorAddToCartCommand):View {
         $errors = $form->getErrors(true);
+        $additionalItemsPrice = 0;
+        foreach ($configuratorAddToCartCommand->getAddToCartCommandAdditionalItems() as $addToCartCommandAdditionalItem) {
+            $this->orderModifier->addToOrder($addToCartCommandAdditionalItem->getCart(), $addToCartCommandAdditionalItem->getCartItem());
+            $additionalItemsPrice += $addToCartCommandAdditionalItem->getCartItem()->getTotal();
+            $this->orderModifier->removeFromOrder($addToCartCommandAdditionalItem->getCart(), $addToCartCommandAdditionalItem->getCartItem());
+        }
+
         return $errors->count() > 0 ?
             View::create($form, Response::HTTP_BAD_REQUEST)->setData(['errors' => $errors]):
             View::create($form, Response::HTTP_OK)
                 ->setData([
                     'unitPrice' => $configuratorAddToCartCommand->getCartItem()->getUnitPrice(),
+                    'additionalItemsPrice' => $additionalItemsPrice,
                     'nextStep'  => $configuratorAddToCartCommand->getStep()
                 ]);
     }
