@@ -10,4 +10,5 @@ services:
             $orderModifier: '@sylius.order_modifier'
             $cartManager: '@sylius.manager.order'
             $restViewHandler: '@fos_rest.view_handler'
+            $cartContext: '@sylius.context.cart.new'
             $validationGroups: '%sylius.form.type.order_item.validation_groups%'

@@ -9,6 +9,7 @@ use FOS\RestBundle\View\ConfigurableViewHandlerInterface;
 use FOS\RestBundle\View\View;
 use Sylius\Bundle\CoreBundle\Checkout\CheckoutStateUrlGeneratorInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
+use Sylius\Component\Order\Context\CartContextInterface;
 use Sylius\Component\Order\Model\OrderItemInterface;
 use Sylius\Component\Order\Modifier\OrderModifierInterface;
 use Symfony\Component\Form\FormError;
@@ -35,6 +36,8 @@ class AddToCartController
      * @param CheckoutStateUrlGeneratorInterface           $urlGenerator
      * @param OrderModifierInterface                       $orderModifier
      * @param EntityManagerInterface                       $cartManager
+     * @param ConfigurableViewHandlerInterface             $restViewHandler
+     * @param CartContextInterface                         $cartContext
      * @param array                                        $validationGroups
      */
     public function __construct(
@@ -46,6 +49,7 @@ class AddToCartController
         protected OrderModifierInterface                       $orderModifier,
         protected EntityManagerInterface                       $cartManager,
         protected ConfigurableViewHandlerInterface             $restViewHandler,
+        protected CartContextInterface                         $cartContext,
         protected array                                        $validationGroups,
     )
     {
@@ -139,9 +143,8 @@ class AddToCartController
         $additionalItemsPrice = 0;
         foreach ($configuratorAddToCartCommand->getAddToCartCommandAdditionalItems() as $addToCartCommandAdditionalItem) {
             if (!$addToCartCommandAdditionalItem->getCartItem()->getVariant() instanceof ProductVariantInterface) continue;
-            $this->orderModifier->addToOrder($addToCartCommandAdditionalItem->getCart(), $addToCartCommandAdditionalItem->getCartItem());
+            $this->orderModifier->addToOrder($this->cartContext->getCart(), $addToCartCommandAdditionalItem->getCartItem());
             $additionalItemsPrice += $addToCartCommandAdditionalItem->getCartItem()->getTotal();
-            $this->orderModifier->removeFromOrder($addToCartCommandAdditionalItem->getCart(), $addToCartCommandAdditionalItem->getCartItem());
         }
 
         return $errors->count() > 0 ?
