@@ -8,6 +8,7 @@ use Asdoria\SyliusConfiguratorPlugin\Model\ConfiguratorInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Sylius\Component\Attribute\Model\Attribute;
+use Sylius\Component\Attribute\Model\AttributeValueInterface;
 use Sylius\Component\Core\Model\ImageInterface;
 use Sylius\Component\Core\Model\ProductInterface;
 use Sylius\Component\Core\Model\ProductVariantInterface;
@@ -54,7 +55,9 @@ class ProductAttributeValueEntitySubscriber extends AbstractEntitySubscriber
      */
     public function getValue(ProductAttributeValue $value)
     {
-        return $value->getValue();
+        return (
+            $value->getAttribute()->getStorageType() === AttributeValueInterface::STORAGE_JSON
+        ) ? array_values($value->getValue()) : $value->getValue() ;
     }
 
 }
