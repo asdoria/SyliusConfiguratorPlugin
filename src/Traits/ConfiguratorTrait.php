@@ -14,7 +14,7 @@ trait ConfiguratorTrait
     /**
      * @var ConfiguratorInterface|null
      */
-    protected ?ConfiguratorInterface $configurator;
+    protected ?ConfiguratorInterface $configurator = null;
 
     /**
      * @return ConfiguratorInterface|null
