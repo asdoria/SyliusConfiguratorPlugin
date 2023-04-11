@@ -151,9 +151,10 @@ class AddToCartController
             View::create($form, Response::HTTP_BAD_REQUEST)->setData(['errors' => $errors]):
             View::create($form, Response::HTTP_OK)
                 ->setData([
-                    'unitPrice' => $configuratorAddToCartCommand->getCartItem()->getUnitPrice(),
+                    'unitPrice'            => $configuratorAddToCartCommand->getCartItem()->getUnitPrice(),
                     'additionalItemsPrice' => $additionalItemsPrice,
-                    'nextStep'  => $configuratorAddToCartCommand->getStep()
+                    'total'                => $configuratorAddToCartCommand->getCartItem()->getTotal(),
+                    'nextStep'             => $configuratorAddToCartCommand->getStep()
                 ]);
     }
 
