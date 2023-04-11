@@ -119,7 +119,7 @@ class ConfiguratorAddToCartItemType extends AbstractResourceType
             $name = $product->isSimple() ? $product->getName(): $variant->getName();
             /** @var \Sylius\Component\Core\Model\ProductVariant $variant */
             $amount = $variant->getChannelPricingForChannel($this->channelContext->getChannel())?->getPrice();
-            $price  = $this->moneyFormatter->format($amount, $this->currencyContext->getCurrencyCode());
+            $price  = $this->moneyFormatter->format($amount ?? 0, $this->currencyContext->getCurrencyCode());
             $attr = [
                 'image_path' => $image instanceof ImageInterface ? $image?->getPath(): null,
                 'code'  => $product->isSimple() ? $product->getCode(): $variant->getCode(),

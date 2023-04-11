@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Asdoria\SyliusConfiguratorPlugin\Form\Type;
 
 use Sylius\Bundle\ResourceBundle\Form\Type\AbstractResourceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -25,8 +26,9 @@ class ConfiguratorItemTranslationType extends AbstractResourceType
             ->add('name', TextType::class, [
                 'label' => 'asdoria.form.configurator_item.label',
             ])
-            ->add('description', TextType::class, [
+            ->add('description', TextareaType::class, [
                 'label' => 'asdoria.form.configurator_item.description',
+                'required' => false,
             ])
         ;
     }
