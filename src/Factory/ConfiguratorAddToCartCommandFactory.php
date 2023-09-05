@@ -33,6 +33,7 @@ use Sylius\Component\Order\Context\CartContextInterface;
 use Sylius\Component\Order\Model\OrderInterface;
 use Sylius\Component\Order\Modifier\OrderItemQuantityModifierInterface;
 use Sylius\Component\Resource\Factory\FactoryInterface;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 /**
  * Class ConfiguratorAddToCartCommandFactory
@@ -58,6 +59,10 @@ final class ConfiguratorAddToCartCommandFactory implements ConfiguratorAddToCart
         $cart            = $this->cartContext->getCart();
         $configurator    = $this->configuratorContext->getConfigurator();
         $additionalItems = new ArrayCollection();
+
+        if (!$configurator instanceof ConfiguratorInterface) {
+            throw new NotFoundHttpException('The configurator has not been found');
+        }
 
         foreach ($configurator->getAdditionalProducts() as $item) {
             $orderItem = $this->orderItemFactory->createNew();
