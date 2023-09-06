@@ -2,7 +2,7 @@
     "name": "asdoria/sylius-configurator-plugin",
     "type": "sylius-plugin",
     "description": "Create the Product configurator - Product customization for you shop",
-    "keywords": ["asdoria", "sylius", "sylius-plugin", "product", "attribute", "configuratior"],
+    "keywords": ["asdoria", "sylius", "sylius-plugin", "product", "attribute", "configurator"],
     "authors": [
         {
             "name": "Asdoria",
